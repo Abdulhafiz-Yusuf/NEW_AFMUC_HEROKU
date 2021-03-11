@@ -1,93 +1,61 @@
-import React, { useState, useEffect } from 'react'
-import ActivityDisplay from './components/ActivityDisplay'
-import Choices from './components/Choices'
-import StoredActivities from './components/StoredActivities'
-import DeleteActivities from './components/DeleteActivities'
-import activityService from './services/activities'
+//DEPENDENCIES
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react'
+import { Card } from 'reactstrap';
+//PAGES
+import LandingPage from './views/LandingPage';
+import BloodDetailPage from './views/BloodDetailPage';
+import MedCenter from './views/MedCenterPage';
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+//PAGE SECTIONS
+import NavBar from './views/NavBar';
+import Footer from './views/Footer';
 
-function App() {
-  const [activities, setActivities] = useState([])
-  const [newActivity, setNewActivity] = useState('')
+//DASHBOARD
+import UserDashBoard from './views/Dashboard/UserDashBoard';
+import SearchDonor from './views/SearchDonor';
 
-  useEffect(() => {
-    activityService
-      .getAllActivities()
-      .then(data => {
-        setActivities(data.activities)
-      })
 
-    activityService
-      .getNewActivity()
-      .then(data => {
-        setNewActivity(data.activity)
-      })
-  }, [])
+/*=====
+APP.JS
+=======*/
+export default function App() {
 
-  const handleNewActivity = () => {
-    activityService
-      .getNewActivity()
-      .then(data => {
-        setNewActivity(data.activity)
-      })
-  }
-
-  const handleAddActivity = newActivity => {
-    activityService
-      .addActivity({
-        activity: newActivity,
-      })
-      .then(() => {
-        setActivities([...activities, {activity: newActivity}])
-      })
-    activityService
-      .getNewActivity()
-      .then(data => {
-        setNewActivity(data.activity)
-      })
-  }
-
-  const handleDeleteActivities = () => {
-    activityService
-      .deleteAllActivities()
-      .then(() => {
-        setActivities([])
-      })
-  }
-
-  return (
-    <div className='container'>
-      <Container>
-        <Row id="first-row">
-          <Col>
-            <ActivityDisplay name={newActivity}/>
-          </Col>
-        </Row>
-        <Row id="second-row">
-          <Col> 
-            <Choices handleNewActivity={handleNewActivity} handleAddActivity={handleAddActivity} name={newActivity}/>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ul>
-              <h2>Today's Activities: {activities.length}</h2>
-              <StoredActivities list={activities} />
-            </ul>
-          </Col>
-        </Row>
-        <Row id="fourth-row">
-          <Col>
-            <DeleteActivities handleDeleteActivities={handleDeleteActivities} />
-          </Col>
-        </Row>
-      </Container>
+  const { isLoading, error } = useAuth0();
+  isLoading &&
+    <div className='container d-flex justify-content-center align-items-center h-75'>
+      <Card>
+        <h2>Loading .... </h2>
+      </Card>
     </div>
-    
+
+
+  error &&
+    < div className='container d-flex justify-content-center align-items-center h-75' >
+      <Card>
+        <h2>{error} </h2>
+      </Card>
+    </div >
+
+  return (<>
+
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/blood_details/:bgId" component={BloodDetailPage} />
+        <Route path="/:userId/form" component={SearchDonor} />
+        <Route path="/med-center" component={MedCenter} />
+        <Route path="/callback" component={UserDashBoard} />
+        <Route path="/testPage" component={UserDashBoard} />
+      </Switch>
+      <Footer />
+    </Router>
+
+  </>
+
   );
 }
 
-export default App;
+
