@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
   //   //server static content
   //   //npm run build
   //app.use(express.static(path.join(__dirname, "./build")));
-  app.use(express.static("./build")); // serve static files (css & js) from the 'build' directory...NB: this is also equivalent app.use(express.static('build')); 
+  app.use(express.static("./client/build")); // serve static files (css & js) from the 'build' directory...NB: this is also equivalent app.use(express.static('build')); 
 
 }
 else {
