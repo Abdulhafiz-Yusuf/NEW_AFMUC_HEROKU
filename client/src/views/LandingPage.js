@@ -13,8 +13,11 @@ const LandingPage = () => {
     useEffect(() => {
         dispatch(fetchBlood)
             .then(response => {
-                console.log(response.payload.bg)
-                setBgData(response.payload.bg)
+                if (response.payload.bg) {
+                    console.log(response.payload.bg)
+                    setBgData(response.payload.bg)
+                }
+                else { console.log(response.payload) }
             })
 
     }, [dispatch])
