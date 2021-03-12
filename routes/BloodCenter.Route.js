@@ -6,10 +6,11 @@ const router = express.Router()
 //Getting all the Bloodcenter 
 
 router.get('/blood_by_id', BloodcenterController.readBloodGroupByID);
-router.get('/', BloodcenterController.readAllBloodGroup);
 router.post('/readBooking', BloodcenterController.readBooking);
 router.post('/addBooking', BloodcenterController.addBooking);
+router.get('/', BloodcenterController.readAllBloodGroup);
 
 module.exports = router
+
 
 

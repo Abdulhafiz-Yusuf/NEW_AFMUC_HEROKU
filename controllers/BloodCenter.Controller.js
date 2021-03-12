@@ -3,7 +3,7 @@ const db = require('../models/db');
 //=========================
 //  Bloodcenter controllers
 //=========================
-
+//INSERT INTO bloodgroup(bg_id,bg,rhd,qty,postdate) VALUES(2,'A','-',30,'2021-03-07 00:00:00');
 exports.readAllBloodGroup = (req, res,) => {
     db.query(`SELECT * FROM bloodgroup ORDER BY bg_id ASC`)
         .then(result => {
@@ -13,7 +13,7 @@ exports.readAllBloodGroup = (req, res,) => {
         })
         .catch(q_err => {
             console.log({ Error: q_err.message })
-            res.status(500).send({ Error: q_err.message }) //DB ERROR
+            res.send({ Error: q_err.message }) //DB ERROR
         })
 }
 
