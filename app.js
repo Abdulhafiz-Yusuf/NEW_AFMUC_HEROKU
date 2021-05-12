@@ -29,22 +29,6 @@ const userRoutes = require('./routes/Users.Route')
 // app.use('/bloodcenter', bloodcenterRoutes)
 app.use('/user', userRoutes)
 app.use('/blood', bloodcenterRoutes)
-app.get('/api/activities', (req, res) => { // route root directory ('/' is this file (app.js))
-
-  services.getAllActivities(req, res);
-});
-
-app.post('/api/activities', (req, res) => {
-  services.addActivityToDB(req, res);
-});
-
-app.get('/api/activities/new', (req, res) => {
-  services.getSingleActivity(req, res);
-});
-
-app.get('/api/activities/delete', (req, res) => {
-  services.deleteAllActivites(req, res);
-});
 
 app.listen(PORT, () => { // start server and listen on specified port
   console.log(`App is running on ${PORT}`) // confirm server is running and log port to the console

@@ -1,20 +1,23 @@
 //DEPENDENCIES
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useAuth0 } from '@auth0/auth0-react'
-import { Card } from 'reactstrap';
+
 //PAGES
-import LandingPage from './views/LandingPage';
-import BloodDetailPage from './views/BloodDetailPage';
-import MedCenter from './views/MedCenterPage';
+import LogIn from './components/admin/LogIn';
+import AllClassSection from './components/classes/AllClassSection'
+import AllClasses from './components/classes/AllClasses'
+import ClassRoom from './components/classes/ClassRoom';
+import AddClassSectionForm from './components/classes/AddClassSectionForm'
+import addClassForm from './components/classes/addClassForm'
+import ManageStudent from './components/students/ManageStudent';
+import ManageSubject from './components/subjects/ManageSubject';
 
-//PAGE SECTIONS
-import NavBar from './views/NavBar';
-import Footer from './views/Footer';
+import ResultsGenerator from './components/result/ResultsGenerator'
+import Results from './components/result/Results'
+import ChangePwd from './components/admin/ChangePwd';
+import GotoClass from './components/classes/GotoClass';
 
-//DASHBOARD
-import UserDashBoard from './views/Dashboard/UserDashBoard';
-import SearchDonor from './views/SearchDonor';
+
 
 
 /*=====
@@ -22,40 +25,40 @@ APP.JS
 =======*/
 export default function App() {
 
-  const { isLoading, error } = useAuth0();
-  isLoading &&
-    <div className='container d-flex justify-content-center align-items-center h-75'>
-      <Card>
-        <h2>Loading .... </h2>
-      </Card>
-    </div>
+  return (
+    <Router TestId='App'>
+      {/* <SideBar /> */}
+      <Switch >
+        <Route path="/" exact component={LogIn} />
+        <Route path="/allclassSection" exact component={AllClassSection} />
 
+        <Route path="/:sectionname/classes" exact component={AllClasses} />
 
-  error &&
-    < div className='container d-flex justify-content-center align-items-center h-75' >
-      <Card>
-        <h2>{error} </h2>
-      </Card>
-    </div >
+        <Route path="/addsection" exact component={AddClassSectionForm} />
 
-  return (<>
+        <Route path="/:sectionname/addclass" exact component={addClassForm} />
 
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/blood_details/:bgId" component={BloodDetailPage} />
-        <Route path="/:userId/form" component={SearchDonor} />
-        <Route path="/med-center" component={MedCenter} />
-        <Route path="/callback" component={UserDashBoard} />
-        <Route path="/testPage" component={UserDashBoard} />
+        <Route path="/:myClassName/classroom/:subjectName" exact component={ClassRoom} />
+        <Route path="/:myClassName/classroom" exact component={ClassRoom} />
+        <Route path="/:ClassRoomName/managesubjects" exact component={ManageSubject} />
+        <Route path="/:ClassRoomName/managestudents" exact component={ManageStudent} />
+        {/* /classroom/error is required for error in result sheet page  
+        when not all score is enter for all students
+        */}
+
+        <Route path='/resultsgenerator' exact>
+          <ResultsGenerator />
+        </Route>
+        {/* <Route path="/resultsgenerator" exact component={ResultsGenerator} /> */}
+        <Route path="/results" exact component={Results} />
+        <Route path="/admin" exact component={ChangePwd} />
+        <Route path="/gotoClass" exact component={GotoClass} />
       </Switch>
-      <Footer />
-    </Router>
 
-  </>
+    </Router >
 
   );
 }
+
 
 

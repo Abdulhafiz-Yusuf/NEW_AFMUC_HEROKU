@@ -1,28 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from './App';
+import './index.css';
+
+
+// Context resultProvider
+//import { ResultProvider } from './AppStore/contextAPI/ResultContext'
+
+
+//REDUX
+// import { Provider } from 'react-redux';
+// import Store from './AppStore/Redux/Store';
+
 
 //BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-//REDUX
-import { Provider } from 'react-redux';
-import Store from './appStore/Store'
-
-//AUTH0
-import { Auth0Provider } from "@auth0/auth0-react";
-
-
+// 
+var destination = document.getElementById('root');
+// 
 ReactDOM.render(
-  <Auth0Provider
-    domain={process.env.REACT_APP_AUTH0_DOMAIN}
-    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-    redirectUri={process.env.REACT_APP_REDUIRECT_URI}
-    //redirectUri={window.location.origin}
-    audience={'http://naijabbms.herokuapp.com/'}
-  >
-    <Provider store={Store} >
-      <App />
-    </Provider>
-  </Auth0Provider>,
-  document.getElementById("root"));
+  // <PouchDB name="dbname">
+  //   <Suspense fallback="loading...">
+  // <Provider store={Store} >
+  <App />
+  // </Provider>
+  //   </Suspense>
+  // </PouchDB>
+  , destination);
+
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// //import App from './App';
+// import './index.css';
+
+// ReactDOM.render(<h1>THis is me</h1>, document.getElementById('root'))
