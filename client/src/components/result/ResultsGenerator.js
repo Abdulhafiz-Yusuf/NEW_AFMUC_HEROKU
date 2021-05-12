@@ -47,6 +47,7 @@ function ResultsGenerator() {
         }
         else {
             //save resultData
+            console.log(Data)
             dbServices.saveresultData(Data)
         }
     }

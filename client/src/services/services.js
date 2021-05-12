@@ -416,7 +416,17 @@ export const dbServices = {
                     if (response)
                         window.location = '/results'
                 }).catch(function (err) {
-                    console.log(err);
+                    if (err)
+                        db.put({
+                            _id: 'resultData',
+                            resultData: Data,
+                        }).then(result => {
+                            if (result)
+                                window.location = '/results'
+                        }).catch(function (err) {
+                            if (err)
+                                console.log('not posted');
+                        });
                 });
 
             })
