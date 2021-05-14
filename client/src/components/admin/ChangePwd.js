@@ -1,5 +1,5 @@
 import React from 'react'
-import SideBar from '../SideBar/SideBar'
+
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Header from '../Header';
 import { dbServices } from '../../services/services';
@@ -49,12 +49,12 @@ function ChangePwd() {
     return (
         <div>
             {/* * 1.   DISPLAY SIDEBAR AND THE FORM TO COLLECT "NEW PASSWORD" AND "PASSWORD AGAIN"  */}
-            <SideBar />
 
 
             <div className='d-flex justify-content-center align-items-center flex-column'>
                 {/* HEADER HERE */}
                 <Header />
+
                 {/* FORM START HERE */}
                 <Card className='container w-50 shadow-lg p-3 d-flex flex-column align-items-center'>
                     <h4 className='text-success font-weight-bold'>Change confirm password</h4>

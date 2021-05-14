@@ -15,7 +15,7 @@ import {
 import { BiCog } from "react-icons/bi";
 
 //Logo
-import Logo from './logo.jpg'
+// import Logo from './logo.jpg'
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
@@ -57,7 +57,7 @@ const SideBar = () => {
                 <div className="logotext">
                   {/* small and big change using menucollapse state */}
 
-                  <p>{menuCollapse ? "Logo" : <img style={{ width: '100%' }} src={Logo} alt='Logo' />}</p>
+                  {/* <p>{menuCollapse ? "Logo" : <img style={{ width: '100%' }} src={Logo} alt='Logo' />}</p> */}
                 </div>
 
               </SidebarHeader>

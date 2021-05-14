@@ -3,7 +3,7 @@ import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
 
 import { dbServices } from '../../services/services';
 import Header from '../Header';
-import SideBar from '../SideBar/SideBar';
+
 
 
 
@@ -16,7 +16,7 @@ function AddclassCategoryForm() {
         //fetchAllSection
         dbServices.fetchAllSections(setClassSection, ClassSection)
 
-    }, [])
+    }, [ClassSection])
 
 
 
@@ -78,11 +78,9 @@ function AddclassCategoryForm() {
 
     return (
         <div className='d-flex flex-row' >
-            <SideBar />
-            <div style={{ height: '100px', width: '150px' }} ></div>
 
-            <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
+            <div className='d-flex justify-content-center align-items-center flex-column'>
+
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >Register Section(s) Below</h4>
                 <Card className='container shadow-lg p-3 mb-5 d-flex'>
                     <Form className='d-flex   flex-column '>
@@ -101,9 +99,7 @@ function AddclassCategoryForm() {
                             onClick={AddSectionHandler}>Add Section</Button>
                     </div>
                 </Card>
-                {
 
-                }
 
                 <Table className='text-success' bordered hover striped>
                     <thead>

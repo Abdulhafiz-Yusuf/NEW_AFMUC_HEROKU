@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import db from '../../db'
 
-import Loading from '../reusables/Loading'
+
 import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
 import AddingMoreCard from '../cards/AddingMoreCard';
@@ -29,9 +29,9 @@ function AllClasses(props) {
     }, [])
     return (
         <div>
-            <SideBar />
+
             <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
+
                 <h4 className='justify-self-center text-center text-danger mt-4 font-weight-bold' >{sectionName.toLocaleUpperCase()} SECTION</h4>
                 {
                     Classes.length === 0 ?

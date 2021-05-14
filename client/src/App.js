@@ -11,11 +11,11 @@ import AddClassSectionForm from './components/classes/AddClassSectionForm'
 import addClassForm from './components/classes/addClassForm'
 import ManageStudent from './components/students/ManageStudent';
 import ManageSubject from './components/subjects/ManageSubject';
-
 import ResultsGenerator from './components/result/ResultsGenerator'
 import Results from './components/result/Results'
 import ChangePwd from './components/admin/ChangePwd';
 import GotoClass from './components/classes/GotoClass';
+import NavBar from './components/NavBar';
 
 
 
@@ -26,8 +26,10 @@ APP.JS
 export default function App() {
 
   return (
+
     <Router TestId='App'>
-      {/* <SideBar /> */}
+      <NavBar />
+      <div style={{ height: '200px' }}></div>
       <Switch >
         <Route path="/" exact component={LogIn} />
         <Route path="/allclassSection" exact component={AllClassSection} />
@@ -42,14 +44,9 @@ export default function App() {
         <Route path="/:myClassName/classroom" exact component={ClassRoom} />
         <Route path="/:ClassRoomName/managesubjects" exact component={ManageSubject} />
         <Route path="/:ClassRoomName/managestudents" exact component={ManageStudent} />
-        {/* /classroom/error is required for error in result sheet page  
-        when not all score is enter for all students
-        */}
-
         <Route path='/resultsgenerator' exact>
           <ResultsGenerator />
         </Route>
-        {/* <Route path="/resultsgenerator" exact component={ResultsGenerator} /> */}
         <Route path="/results" exact component={Results} />
         <Route path="/admin" exact component={ChangePwd} />
         <Route path="/gotoClass" exact component={GotoClass} />

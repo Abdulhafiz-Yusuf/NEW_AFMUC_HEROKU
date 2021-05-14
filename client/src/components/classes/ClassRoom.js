@@ -35,10 +35,10 @@ function ClassRoom(props) {
     }
     return (
         <div className='d-flex'>
-            <SideBar />
-            <div className='' style={{ width: '220px' }}></div>
+
+
             <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
+
                 <h4 className='text-success font-weight-bold' >
                     {ClassName.toLocaleUpperCase()}</h4>
 

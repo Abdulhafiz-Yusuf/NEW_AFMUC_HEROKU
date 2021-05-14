@@ -84,12 +84,9 @@ function ManageStudent(props) {
 
     return (
         <div className='d-flex flex-row' >
-            <SideBar />
-            <div style={{ height: '100px', width: '150px' }} ></div>
-
 
             <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
+
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >{ClassName.toLocaleUpperCase()}</h4>
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >Register Student(s) Below</h4>
                 <Card className='container shadow-lg p-3 mb-5 d-flex'>

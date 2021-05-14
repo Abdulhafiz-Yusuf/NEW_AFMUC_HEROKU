@@ -222,17 +222,20 @@ export const dbServices = {
     },
 
     authenticateAdmin: (profile) => {
-        db.get('userId').then(result => {
-            console.log(result)
-            if (profile.username === result.username & profile.password === result.password) {
-                window.location = '/allclassSection'
-            }
-            else {
-                alert('Wrong username or Passsword')
-            }
-        }).catch(function (err) {
-            console.log(err);
-        });
+
+        db.get('userId').
+            then(result => {
+                console.log(result)
+                if (profile.username === result.username & profile.password === result.password) {
+                    window.location = '/allclassSection'
+                }
+                else {
+                    alert('Wrong username or Passsword')
+                }
+            }).catch(function (err) {
+                console.log(err)
+            });
+
     },
 
     //API POST REQUESTS
@@ -416,17 +419,17 @@ export const dbServices = {
                     if (response)
                         window.location = '/results'
                 }).catch(function (err) {
-                    if (err)
+                    if (err) {
                         db.put({
                             _id: 'resultData',
                             resultData: Data,
                         }).then(result => {
-                            if (result)
-                                window.location = '/results'
+                            if (result) window.location = '/results'
+
                         }).catch(function (err) {
-                            if (err)
-                                console.log('not posted');
+                            if (err) console.log('not posted');
                         });
+                    }
                 });
 
             })
@@ -450,3 +453,6 @@ export const dbServices = {
             })
     }
 }
+
+
+

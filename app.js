@@ -2,7 +2,7 @@ const express = require('express'); // import express module (simplifies routing
 const cors = require('cors'); // import the CORS library to allow Cross-origin resource sharing
 const app = express(); // create an instance of the express module (app is the conventional variable name used)
 var bodyParser = require('body-parser');
-
+const path = require('path');
 // const services = require('./services/requests')
 
 const PORT = process.env.PORT || 5000; // use either the host env var port (PORT) provided by Heroku or the local port (5000) on your machine
@@ -20,15 +20,13 @@ if (process.env.NODE_ENV === "production") {
 
 }
 else {
-  app.use(express.static('./client/build'));
+  app.use(express.static(path.join(__dirname, './client/build')));
 }
 
-//ROUTES
-const bloodcenterRoutes = require('./routes/BloodCenter.Route')
-const userRoutes = require('./routes/Users.Route')
-// app.use('/bloodcenter', bloodcenterRoutes)
-app.use('/user', userRoutes)
-app.use('/blood', bloodcenterRoutes)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 app.listen(PORT, () => { // start server and listen on specified port
   console.log(`App is running on ${PORT}`) // confirm server is running and log port to the console

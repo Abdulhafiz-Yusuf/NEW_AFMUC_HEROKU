@@ -15,7 +15,9 @@ function ManageCard({ currentClass, student, subject, NoOfSubjects, NoOfStudents
                                 className='text-center font-weight-bolder text-success' >
                                 Manage Students</h3>
                         </CardTitle>
-                        <div className='text-center'> <em>Total Number of Students: {NoOfStudents}</em> <h6 className='font-weight-bolder'></h6> </div>
+                        <div className='text-center'> <em>Total Number of Students: {NoOfStudents}</em>
+                            <h6 className='font-weight-bolder'>                            </h6>
+                        </div>
 
                     </Button >
                 </Link >
@@ -26,7 +28,9 @@ function ManageCard({ currentClass, student, subject, NoOfSubjects, NoOfStudents
                                 className='text-center font-weight-bolder text-success' >
                                 Manage Subjects</h3>
                         </CardTitle>
-                        <div className='text-center'> <em>Total Number of Subjects:{NoOfSubjects}</em> <h6 className='font-weight-bolder'></h6> </div>
+                        <div className='text-center'> <em>Total Number of Subjects:{NoOfSubjects}</em>
+                            <h6 className='font-weight-bolder'>                            </h6>
+                        </div>
                     </Button >
                 </Link >
             </div>

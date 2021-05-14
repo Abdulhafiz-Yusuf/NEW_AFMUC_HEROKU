@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import AddingMoreCard from '../cards/AddingMoreCard';
-import Loading from '../reusables/Loading'
+
 import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
-import SideBar from '../SideBar/SideBar';
+
 import { dbServices } from '../../services/services';
 
 function AllClassSection() {
@@ -24,8 +24,8 @@ function AllClassSection() {
     }, [])
     return (
         <div>
-            <SideBar />
-            <div style={{ height: '100px' }}></div>
+
+
             <div className='d-flex justify-content-center'>
                 {
                     ClassSection.length === 0 ?

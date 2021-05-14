@@ -84,9 +84,7 @@ function AddclassClassesForm(props) {
 
     return (
         <div className='d-flex flex-row' >
-            <SideBar />
-            {/* THE DIV BELOW SERVE AS TOP PADDING   */}
-            <div style={{ height: '100px', width: '150px' }} ></div>
+
             <div className='container d-flex justify-content-center align-items-center flex-column '>
                 <Header />
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' > {sectionName.toLocaleUpperCase()} SECTION</h4>

@@ -3,7 +3,6 @@ import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Header from '../Header'
 
 //DATEPICKER AND ITS CSS
-import SideBar from '../SideBar/SideBar';
 import { dbServices } from '../../services/services';
 
 
@@ -42,32 +41,33 @@ function ResultsGenerator() {
     }
     return (
         <div >
-            <SideBar />
-            <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
-            </div>
-            <Card className='container border w-50 shadow-lg p-3 d-flex align-items-center'>
-                <h4 className='text-success text-center font-weight-bold' > SPECIFY A DESIRED CLASS</h4>
-                <Form >
-                    <FormGroup className='d-flex w-100' >
-                        <Label for="Class" className='text-success font-weight-bold pr-3'>Class:</Label>
-                        <Input type="select" name="selectedClass" value={ResultGenData.selectedClass} onChange={handleChange} >
-                            {
-                                ResultGenData.class.map((item, index) =>
-                                    < option key={index} > {item.class_name}</option>
-                                )
-                            }
-                        </Input>
-                    </FormGroup>
 
-                </Form >
-                <div className='d-flex justify-content-lg-center '>
-                    {/* using this button to test CONTEXT API */}
-                    <Button className='text-light font-weight-bold pr-3'
-                        color='success'
-                        onClick={onSubmit}>Submit</Button>
-                </div>
-            </Card >
+            <div className='d-flex justify-content-center align-items-center flex-column'>
+
+
+                <Card className='container border w-50 shadow-lg p-3 d-flex align-items-center'>
+                    <h4 className='text-success text-center font-weight-bold' > SPECIFY A DESIRED CLASS</h4>
+                    <Form >
+                        <FormGroup className='d-flex w-100' >
+                            <Label for="Class" className='text-success font-weight-bold pr-3'>Class:</Label>
+                            <Input type="select" name="selectedClass" value={ResultGenData.selectedClass} onChange={handleChange} >
+                                {
+                                    ResultGenData.class.map((item, index) =>
+                                        < option key={index} > {item.class_name}</option>
+                                    )
+                                }
+                            </Input>
+                        </FormGroup>
+
+                    </Form >
+                    <div className='d-flex justify-content-lg-center '>
+                        {/* using this button to test CONTEXT API */}
+                        <Button className='text-light font-weight-bold pr-3'
+                            color='success'
+                            onClick={onSubmit}>Submit</Button>
+                    </div>
+                </Card >
+            </div>
         </div >
     )
 }
