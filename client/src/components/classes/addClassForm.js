@@ -86,7 +86,7 @@ function AddclassClassesForm(props) {
         <div className='d-flex flex-row' >
 
             <div className='container d-flex justify-content-center align-items-center flex-column '>
-                <Header />
+
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' > {sectionName.toLocaleUpperCase()} SECTION</h4>
 
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >Register Class(es)</h4>

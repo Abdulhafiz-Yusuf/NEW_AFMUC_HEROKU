@@ -16,7 +16,7 @@ function AddclassCategoryForm() {
         //fetchAllSection
         dbServices.fetchAllSections(setClassSection, ClassSection)
 
-    }, [ClassSection])
+    }, [])
 
 
 
@@ -79,8 +79,7 @@ function AddclassCategoryForm() {
     return (
         <div className='d-flex flex-row' >
 
-            <div className='d-flex justify-content-center align-items-center flex-column'>
-
+            <div className='container d-flex justify-content-center align-items-center flex-column '>
                 <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >Register Section(s) Below</h4>
                 <Card className='container shadow-lg p-3 mb-5 d-flex'>
                     <Form className='d-flex   flex-column '>
@@ -99,8 +98,6 @@ function AddclassCategoryForm() {
                             onClick={AddSectionHandler}>Add Section</Button>
                     </div>
                 </Card>
-
-
                 <Table className='text-success' bordered hover striped>
                     <thead>
                         <tr>
@@ -145,15 +142,8 @@ function AddclassCategoryForm() {
                         color='success'
                         onClick={onSubmit}>Submit</Button>
                 </div>
-
-
-
             </div>
-
-
         </div>
-
-
     )
 }
 
