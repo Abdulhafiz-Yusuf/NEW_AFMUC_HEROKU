@@ -20,18 +20,19 @@ const NavBar = () => {
     }, [])
     return (
         <div className='fixed-top rounded mb-4' style={styles}>
-            <div className='d-flex justify-content-center '>
-                <NavbarBrand to="/" className='font-weight-bold'>
-                    <img style={{ width: '100px', height: '100px' }} src={Logo} alt='Logo' />
-                </NavbarBrand>
-                <div>
-                    <h2 className='text-success text-center' >AFMUC INTERNATIONAL MISSIONARY SCHOOL</h2>
-                    <h4 className='text-success text-center' >STUDENT RESULT MANAGEMENT SYSTEM</h4>
-                </div>
-            </div>
+
 
             <Navbar color="success d-flex flex-column" light expand="sm">
                 <NavbarToggler onClick={toggle} />
+                <div className='d-flex justify-content-center '>
+                    <NavbarBrand to="/" className='font-weight-bold'>
+                        <img style={{ width: '100px', height: '100px' }} src={Logo} alt='Logo' />
+                    </NavbarBrand>
+                    <div>
+                        <h2 className='text-light text-center' >AFMUC INTERNATIONAL MISSIONARY SCHOOL</h2>
+                        <h4 className='text-light text-center' >STUDENT RESULT MANAGEMENT SYSTEM</h4>
+                    </div>
+                </div>
                 <Collapse className='w-50 light justify-content-center' isOpen={isOpen} navbar>
                     <Nav className="mr-auto d-flex flex-column w-100" navbar>
                         <ul className="nav d-flex justify-content-between alighn-items-between w-100">
