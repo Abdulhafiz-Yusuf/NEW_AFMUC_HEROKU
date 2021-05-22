@@ -419,19 +419,24 @@ export const dbServices = {
                     if (response)
                         window.location = '/results'
                 }).catch(function (err) {
-                    if (err) {
-                        db.put({
-                            _id: 'resultData',
-                            resultData: Data,
-                        }).then(result => {
-                            if (result) window.location = '/results'
+                    console.log(err)
+                })
+            })
+            .catch(function (err) {
+                if (err) {
+                    db.put({
+                        _id: 'resultData',
+                        resultData: Data,
+                    }).then(result => {
+                        if (result) {
+                            alert('Saved Successfully')
+                            //   window.location = '/results'
+                        }
 
-                        }).catch(function (err) {
-                            if (err) console.log('not posted');
-                        });
-                    }
-                });
-
+                    }).catch(function (err) {
+                        if (err) console.log('not posted');
+                    });
+                }
             })
     },
     //UPDATING DB
