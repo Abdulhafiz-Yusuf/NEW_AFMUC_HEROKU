@@ -16,6 +16,7 @@ import Results from './components/result/Results'
 import ChangePwd from './components/admin/ChangePwd';
 import GotoClass from './components/classes/GotoClass';
 import NavBar from './components/NavBar';
+import PrintResult from './components/result/PrintResult';
 
 
 
@@ -47,7 +48,7 @@ export default function App() {
         <Route path='/resultsgenerator' exact>
           <ResultsGenerator />
         </Route>
-        <Route path="/results" exact component={Results} />
+        <Route path="/results" exact component={PrintResult} />
         <Route path="/admin" exact component={ChangePwd} />
         <Route path="/gotoClass" exact component={GotoClass} />
       </Switch>

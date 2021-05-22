@@ -1,23 +1,28 @@
 import React from 'react'
 import { Button } from 'reactstrap';
-
+import { useReactToPrint } from 'react-to-print';
+import Results from './Results';
 //const ipcRenderer = window.require('electron').ipcRenderer;
 
 function BackPrintBtn() {
     //buttons to disappear when clicked to print
     const [buttonDisplay, setbtnDisplay] = React.useState({ display: 'flex' })
+    const print = useReactToPrint({
+        content: Results,
+    });
+    // const onPrint = (e) => {
+    //     e.preventDefault()
+    //     setbtnDisplay({ display: 'none' })
+    //     //SNIPPET FOR OUTPUTTING CURRENT WEB CONTENT TO PDF 
+    //     // ipcRenderer.send('print-to-pdf');
+    //     // ipcRenderer.on('wrote-pdf', (event, path) => {
+    //     //     const message = `Wrote pdf to : ${path}`;
+    //     //     alert(message);
+    //     // })
+    //     print()
 
-    const onPrint = (e) => {
-        e.preventDefault()
-        setbtnDisplay({ display: 'none' })
-        //SNIPPET FOR OUTPUTTING CURRENT WEB CONTENT TO PDF 
-        // ipcRenderer.send('print-to-pdf');
-        // ipcRenderer.on('wrote-pdf', (event, path) => {
-        //     const message = `Wrote pdf to : ${path}`;
-        //     alert(message);
-        // })
-        window.location = '/allclassSection'
-    }
+    //     window.location = '/allclassSection';
+    // }
     const backHandler = () => {
         //window.history.back()
         window.location = '/allclassSection'
@@ -29,7 +34,7 @@ function BackPrintBtn() {
                 onClick={backHandler}>BACK</Button>
             <Button className='text-light font-weight-bold'
                 color='success'
-                onClick={onPrint}>PRINT</Button>
+                onClick={print}>PRINT</Button>
         </div>
     )
 }
