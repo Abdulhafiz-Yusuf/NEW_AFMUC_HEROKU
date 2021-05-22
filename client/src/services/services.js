@@ -430,7 +430,7 @@ export const dbServices = {
                     }).then(result => {
                         if (result) {
                             alert('Saved Successfully')
-                            //   window.location = '/results'
+                            window.location = '/results'
                         }
 
                     }).catch(function (err) {
