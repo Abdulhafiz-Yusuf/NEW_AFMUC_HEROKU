@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import Header from '../Header'
+
 
 //DATEPICKER AND ITS CSS
 import { dbServices } from '../../services/services';
@@ -46,7 +46,7 @@ function ResultsGenerator() {
 
 
                 <Card className='container border w-50 shadow-lg p-3 d-flex align-items-center'>
-                    <h4 className='text-success text-center font-weight-bold' > SPECIFY A DESIRED CLASS</h4>
+                    <h4 className='text-danger mb-5 text-center font-weight-bold' > SPECIFY A DESIRED CLASS</h4>
                     <Form >
                         <FormGroup className='d-flex w-100' >
                             <Label for="Class" className='text-success font-weight-bold pr-3'>Class:</Label>

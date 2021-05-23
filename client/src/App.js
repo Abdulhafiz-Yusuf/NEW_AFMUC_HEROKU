@@ -12,7 +12,6 @@ import addClassForm from './components/classes/addClassForm'
 import ManageStudent from './components/students/ManageStudent';
 import ManageSubject from './components/subjects/ManageSubject';
 import ResultsGenerator from './components/result/ResultsGenerator'
-import Results from './components/result/Results'
 import ChangePwd from './components/admin/ChangePwd';
 import GotoClass from './components/classes/GotoClass';
 import NavBar from './components/NavBar';

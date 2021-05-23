@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import Header from '../Header'
+
 
 //DATEPICKER AND ITS CSS
 import DatePicker from "react-datepicker";
@@ -57,7 +57,7 @@ function ResultsGenerator() {
             <div className='d-flex justify-content-center align-items-center flex-column'>
 
                 <Card className='container border w-50 shadow-lg p-3 d-flex align-items-center'>
-                    <h4 className='text-success text-center font-weight-bold' >                    RESULT GENERATOR</h4>                <Form >
+                    <h4 className='text-danger mb-5 text-center font-weight-bold' >                    RESULT GENERATOR</h4>                <Form >
                         <FormGroup className='d-flex w-100' >
                             <Label for="Class" className='text-success font-weight-bold pr-3'>Class:</Label>
                             <Input type="select" name="selectedClass" value={ResultGenData.selectedClass} onChange={handleChange} >

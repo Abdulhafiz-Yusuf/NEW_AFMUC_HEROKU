@@ -6,7 +6,7 @@ import './result.css'
 import * as Data from './ResultData'
 import { Table } from './ResultTables';
 import { dbServices } from '../../services/services';
-import BackPrintBtn from './BackPrintBtn';
+
 
 
 

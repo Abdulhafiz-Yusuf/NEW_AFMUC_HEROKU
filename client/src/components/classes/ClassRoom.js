@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ManageCard from '../cards/ManageCard'
 import { Label, Input } from 'reactstrap';
-import SideBar from '../SideBar/SideBar';
-import Header from '../Header';
 import ScoreSheetTable from './ScoreSheetTables';
 import { dbServices } from '../../services/services';
 
@@ -39,7 +37,7 @@ function ClassRoom(props) {
 
             <div className='container d-flex justify-content-center align-items-center flex-column '>
 
-                <h4 className='text-success font-weight-bold' >
+                <h4 className='text-danger font-weight-bold' >
                     {ClassName.toLocaleUpperCase()}</h4>
 
                 {/* Display the Manage Cards for Students and Subjects */}

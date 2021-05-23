@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react'
 import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
 import AddingMoreCard from '../cards/AddingMoreCard';
-import SideBar from '../SideBar/SideBar'
-import Header from '../Header'
+
 import { dbServices } from '../../services/services'
 
 

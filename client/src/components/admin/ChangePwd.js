@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import Header from '../Header';
+
 import { dbServices } from '../../services/services';
 
 /**DESCRIPTION: A FORM COMPONENT THAT CHANGES THE ADMIN PASSWORD. 
@@ -52,8 +52,8 @@ function ChangePwd() {
 
 
             <div className='d-flex justify-content-center align-items-center flex-column'>
-                {/* HEADER HERE */}
-                <Header />
+
+
 
                 {/* FORM START HERE */}
                 <Card className='container w-50 shadow-lg p-3 d-flex flex-column align-items-center'>

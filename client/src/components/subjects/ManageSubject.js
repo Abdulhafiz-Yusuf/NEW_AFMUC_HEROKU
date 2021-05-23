@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
 import { dbServices } from '../../services/services';
-import Header from '../Header';
-import SideBar from '../SideBar/SideBar';
+
 import SubjectTable from './SubjectTable';
 
 
@@ -54,8 +53,8 @@ function ManageSubject(props) {
 
             <div className='container d-flex justify-content-center align-items-center flex-column '>
 
-                <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >{className.toLocaleUpperCase()}</h4>
-                <h4 className='justify-self-center text-center text-success mt-4 font-weight-bold' >Register Subject(s) Below</h4>
+                <h4 className='justify-self-center text-center text-danger mt-4 font-weight-bold' >{className.toLocaleUpperCase()}</h4>
+                <h4 className='justify-self-center text-center text-danger mt-4 font-weight-bold' >Register Subject(s) Below</h4>
                 <Card className='container shadow-lg p-3 mb-5 d-flex'>
                     <Form className='d-flex   flex-column '>
                         <FormGroup className='d-flex flex-row mr-0 justify-content-start'>
