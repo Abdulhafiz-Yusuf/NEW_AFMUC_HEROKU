@@ -12,6 +12,8 @@ import { dbServices } from '../../services/services';
 function ResultsGenerator() {
 
     const [ResultGenData, setResultGenData] = useState({
+        section: [],
+        selectedSection: '',
         class: [],
         noOfClasses: 0,
         term: 'FIRST TERM',
@@ -38,8 +40,8 @@ function ResultsGenerator() {
         e.preventDefault()
         const Data = {
             term: ResultGenData.term,
+            selectedSection: ResultGenData.selectedSection,
             selectedClass: ResultGenData.selectedClass,
-            session: ResultGenData.session,
             nextTermBeing: ResultGenData.nextTermBeing.toDateString()
         }
         if (ResultGenData.session === '') {
@@ -51,6 +53,8 @@ function ResultsGenerator() {
             dbServices.saveresultData(Data)
         }
     }
+
+
     return (
         <div>
 
@@ -58,6 +62,19 @@ function ResultsGenerator() {
 
                 <Card className='container border w-50 shadow-lg p-3 d-flex align-items-center'>
                     <h4 className='text-danger mb-5 text-center font-weight-bold' >                    RESULT GENERATOR</h4>                <Form >
+                        <FormGroup className='d-flex w-100' >
+                            <Label for="Class" className='text-success font-weight-bold pr-3'>Session:</Label>
+                            <Input type="select" name="selectedSection" value={ResultGenData.selectedSection} onChange={handleChange} >
+                                {ResultGenData.section.length > 0 &&
+                                    ResultGenData.section.map((item, index) =>
+                                        < option key={index} > {item.cat_name}</option>
+                                    )
+                                }
+                            </Input>
+                        </FormGroup>
+
+
+
                         <FormGroup className='d-flex w-100' >
                             <Label for="Class" className='text-success font-weight-bold pr-3'>Class:</Label>
                             <Input type="select" name="selectedClass" value={ResultGenData.selectedClass} onChange={handleChange} >

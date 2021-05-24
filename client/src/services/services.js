@@ -2,7 +2,7 @@ import db from '../db'
 
 export const dbServices = {
     //FETCH OR GET REQUESTS
-    getResultData: (setCurrentData, setScore, setStudent, setSubjects) => {
+    getResultData: (setCurrentData, setScore, setStudent, setSubjects, setSection) => {
 
         db.get('resultData')
             .then(result => {
@@ -12,6 +12,7 @@ export const dbServices = {
                     //fetch classroom Data from db and save in State
                     db.get(result.resultData.selectedClass.toLocaleLowerCase()) // e.g nursery 1 === result.resultData.selectedClass.toLocaleLowerCase()
                         .then(res => {
+                            console.log(res)
                             // result === {subjects: Array(3), students: Array(2), scores: result.scores, _id: "basic 1", _rev: "11-65f4389ac05f9a59a734892a9aff5b10"}
                             setScore(res.scores);
                             //      scores: {
@@ -31,13 +32,15 @@ export const dbServices = {
     getResultGeneratorData: (ResultGenData, setResultGenData, tempClassValue) => {
         db.get('Section')
             .then(result => {
+                console.log(result.category)
                 setResultGenData({ ...ResultGenData, noOfClasses: result.category.length })
                 result.category.forEach((element, index, array) => {
                     db.get(element.cat_name.toLocaleLowerCase(),
                         (err, res) => {
                             if (res) {
+                                console.log(res)
                                 tempClassValue = tempClassValue.concat(res.Classes)
-                                setResultGenData({ ...ResultGenData, noOfClasses: index + 1, class: tempClassValue, selectedClass: tempClassValue[0].class_name })
+                                setResultGenData({ ...ResultGenData, noOfClasses: index + 1, class: tempClassValue, selectedClass: tempClassValue[0].class_name, section: array, selectedSection: array[0].cat_name })
 
                             }
                             if (err) {
