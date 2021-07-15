@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //PAGES
 import LogIn from './components/admin/LogIn';
+import SignUp from './components/admin/SignUp';
 import AllClassSection from './components/classes/AllClassSection'
 import AllClasses from './components/classes/AllClasses'
 import ClassRoom from './components/classes/ClassRoom';
@@ -20,6 +21,7 @@ import PrintResult from './components/result/PrintResult';
 
 
 
+
 /*=====
 APP.JS
 =======*/
@@ -32,6 +34,9 @@ export default function App() {
       <div style={{ height: '200px' }}></div>
       <Switch >
         <Route path="/" exact component={LogIn} />
+
+        <Route path="/signup" exact component={SignUp} />
+
         <Route path="/allclassSection" exact component={AllClassSection} />
 
         <Route path="/:sectionname/classes" exact component={AllClasses} />

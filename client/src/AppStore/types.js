@@ -1,0 +1,15 @@
+
+//USER ACTION TYPES
+
+export const LOGIN = 'LOGIN'
+export const SIGNUP = 'SIGNUP'
+export const GET_CURRENT_USER = 'GET_CURRENT_USER'
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
+
+//RESULT ACTION TYPES
+export const FETCH_RESULT_DATA = 'FETCH_ORDER_DATA'
+
+
+
+//ERROR ACTION TYPE
+export const ERROR = 'ERROR'

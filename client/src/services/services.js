@@ -225,7 +225,6 @@ export const dbServices = {
     },
 
     authenticateAdmin: (profile) => {
-
         db.get('userId').
             then(result => {
                 console.log(result)
