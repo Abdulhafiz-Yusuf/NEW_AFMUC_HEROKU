@@ -7,7 +7,7 @@ export const initialState = {
     error: null
 }
 
-export const globaltore = createContext(initialState);
+export const globalStore = createContext(initialState);
 
 
 const ContextProvider = ({ children }) => {
@@ -15,9 +15,9 @@ const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
 
     return (
-        <globaltore.Provider value={{ state, dispatch }}>
+        <globalStore.Provider value={{ state, dispatch }}>
             {children}
-        </globaltore.Provider>
+        </globalStore.Provider>
     );
 
 };

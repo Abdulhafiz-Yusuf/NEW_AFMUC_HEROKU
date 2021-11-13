@@ -11,12 +11,11 @@ export default function rootReducer(state = initialState, action) {
 
 		//USER REDUCER
 		case LOGIN:
-			return action.payload.user
+			return { ...state, user: action.payload.user }
 		case SIGNUP:
-			return action.payload.newUser
+			return { ...state, user: action.payload.user }
 		case GET_CURRENT_USER:
 			return { ...state, user: action.payload }
-
 
 		//RESULT REDUCER
 		case FETCH_RESULT_DATA:

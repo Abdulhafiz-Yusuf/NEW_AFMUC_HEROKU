@@ -12,7 +12,7 @@ function AddclassClassesForm(props) {
     const [myClass, setmyClass] = useState({ class_name: '', teacher_name: '', })
 
     useEffect(() => {
-        //fetchAllClassess
+        //     //fetchAllClassess
         dbServices.fetchAllClasses(sectionName, setClasses, Classes)
     }, [])
 

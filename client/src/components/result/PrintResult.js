@@ -6,7 +6,9 @@ import { Button } from 'reactstrap';
 
 function PrintResult() {
     const [buttonDisplay, setbtnDisplay] = React.useState({ display: 'flex' })
+
     const componentRef = useRef();
+
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });

@@ -18,13 +18,14 @@ function AllClasses(props) {
      *  */
 
     const [Classes, setClasses] = useState([])
+    console.log(props)
     let sectionName = props.match.params.sectionname
 
 
     //* 1.   useEffect = fetch all class category
     useEffect(() => {
         //fetch All classes
-        dbServices.fetchAllClasses(sectionName, setClasses, Classes)
+        // dbServices.fetchAllClasses(sectionName, setClasses, Classes)
     }, [])
     return (
         <div>

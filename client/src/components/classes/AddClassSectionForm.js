@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
-
+import { globalStore } from '../../AppStore/globalStore';
+import { useHistory } from 'react-router-dom';
 import { dbServices } from '../../services/services';
+import { fetchAllSections, saveAllSection } from '../../AppStore/actions/ResultActions';
 
 
-
-
-
-function AddclassCategoryForm() {
-
+function AddclassCategoryForm({ user }) {
+    console.log(user)
+    const history = useHistory();
+    console.log(user)
     const [ClassSection, setClassSection] = useState([])
     const [Section, setSection] = React.useState({ cat_name: '', hod_name: '', })
 
     useEffect(() => {
         //fetchAllSection
-        dbServices.fetchAllSections(setClassSection, ClassSection)
-
+        fetchAllSections(setClassSection, ClassSection, user)
     }, [])
-
 
 
     const changeHandler = (e) => {
@@ -69,8 +68,10 @@ function AddclassCategoryForm() {
 
         else {
             //save all sections to DB
-            dbServices.saveAllSection(ClassSection)
+            saveAllSection(history, ClassSection, user)
+
         }
+
 
 
 

@@ -6,8 +6,10 @@ import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
 
 import { dbServices } from '../../services/services';
+import { fetchAllSections } from '../../AppStore/actions/ResultActions';
 
-function AllClassSection() {
+function AllClassSection({ user }) {
+    const uid = user.uid
     /**
      * 1.   useEffect = fetch all class category and keep in useState = ClassSection 
      * 2.   if ClassSection.length === 0 ? display addClassSection component
@@ -19,8 +21,7 @@ function AllClassSection() {
 
     useEffect(() => {
         //* 1.   useEffect = fetch all class category
-        dbServices.fetchAllSections(setClassSection, ClassSection)
-
+        fetchAllSections(setClassSection, uid)
     }, [])
     return (
         <div>

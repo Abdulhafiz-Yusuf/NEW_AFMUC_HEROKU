@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { globaltore } from '../../AppStore/globalStore';
+import { globalStore } from '../../AppStore/globalStore';
 import { dbServices } from '../../services/services';
 import { singUp } from '../../AppStore/actions/UserActions'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function SignUp() {
-    const { state, dispatch } = useContext(globaltore)
+    const { state, dispatch } = useContext(globalStore)
 
-
+    const history = useHistory()
     const [profile, setProfile] = React.useState({
         username: '',
         fullName: '',
@@ -50,7 +50,7 @@ function SignUp() {
 
 
             //Register User
-            singUp(dispatch, profile.fullName, profile.email, profile.password, profile.section, setError, setLoading)
+            singUp(history, dispatch, profile.username, profile.email, profile.password, profile.section, setError, setLoading)
         }
     }
     return (
@@ -84,7 +84,7 @@ function SignUp() {
 
 
                 <h6 className='mt-3 mb-3'>Already have an account?
-                 <Link to='/'>  Login</Link>
+                    <Link to='/'>  Login</Link>
                 </h6>
 
             </Card >

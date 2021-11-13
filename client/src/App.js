@@ -1,5 +1,5 @@
 //DEPENDENCIES
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //PAGES
@@ -9,7 +9,7 @@ import AllClassSection from './components/classes/AllClassSection'
 import AllClasses from './components/classes/AllClasses'
 import ClassRoom from './components/classes/ClassRoom';
 import AddClassSectionForm from './components/classes/AddClassSectionForm'
-import addClassForm from './components/classes/addClassForm'
+import AddClassForm from './components/classes/addClassForm'
 import ManageStudent from './components/students/ManageStudent';
 import ManageSubject from './components/subjects/ManageSubject';
 import ResultsGenerator from './components/result/ResultsGenerator'
@@ -17,6 +17,8 @@ import ChangePwd from './components/admin/ChangePwd';
 import GotoClass from './components/classes/GotoClass';
 import NavBar from './components/NavBar';
 import PrintResult from './components/result/PrintResult';
+import Firebase from './services/firebase/FirebaseConfig';
+import LoadScreen from './components/common/LoadScreen';
 
 
 
@@ -26,41 +28,129 @@ import PrintResult from './components/result/PrintResult';
 APP.JS
 =======*/
 export default function App() {
+  const [isLoading, setisLoading] = useState(false)
+  const [user, setuser] = useState()
 
-  return (
+  function onAuthStateChange() {
+    setisLoading(true)
+    return Firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setuser(user)
+        setisLoading(false)
+        console.log("The user is logged in");
+      } else {
+        setisLoading(false)
+        console.log("The user is not logged in");
+      }
+    });
+  }
 
-    <Router TestId='App'>
-      <NavBar />
-      <div style={{ height: '200px' }}></div>
-      <Switch >
-        <Route path="/" exact component={LogIn} />
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange();
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-        <Route path="/signup" exact component={SignUp} />
 
-        <Route path="/allclassSection" exact component={AllClassSection} />
 
-        <Route path="/:sectionname/classes" exact component={AllClasses} />
 
-        <Route path="/addsection" exact component={AddClassSectionForm} />
 
-        <Route path="/:sectionname/addclass" exact component={addClassForm} />
+  if (isLoading) {
+    return (
+      // <div className='container d-flex justify-content-center align-items-center h-75'>
+      //   <Card>
+      //     <h2>Loading .... </h2>
+      //   </Card>
+      // </div>
+      <LoadScreen text='' height='100vh' />
+    )
+  }
+  else {
+    return (
+      <Router TestId='App'>
+        <NavBar />
+        <div style={{ height: '200px' }}></div>
+        <Switch >
+          <Route path="/" exact component={LogIn} />
 
-        <Route path="/:myClassName/classroom/:subjectName" exact component={ClassRoom} />
-        <Route path="/:myClassName/classroom" exact component={ClassRoom} />
-        <Route path="/:ClassRoomName/managesubjects" exact component={ManageSubject} />
-        <Route path="/:ClassRoomName/managestudents" exact component={ManageStudent} />
-        <Route path='/resultsgenerator' exact>
-          <ResultsGenerator />
-        </Route>
-        <Route path="/results" exact component={PrintResult} />
-        <Route path="/admin" exact component={ChangePwd} />
-        <Route path="/gotoClass" exact component={GotoClass} />
-      </Switch>
+          <Route path="/signup" exact component={SignUp} />
 
-    </Router >
+          <Route
+            path="/allclassSection"
+            render={(props) => (
+              <AllClassSection {...props} user={user} />
+            )}
+          />
 
-  );
+
+
+          {/* <Route path="/:sectionname/classes" exact>
+            <AllClasses props={...props} />
+         </Route> */}
+
+          <Route
+            path='/:sectionname/classes'
+            render={(props) => (
+              <AllClasses {...props} user={user} />
+            )}
+          />
+
+
+          <Route
+            path="/addsection"
+            render={(props) => (
+              <AddClassSectionForm {...props} user={user} />
+            )}
+          />
+
+
+          <Route path="/addsection" exact>
+            <AddClassSectionForm user={user} />
+          </Route>
+
+
+          <Route path="/:sectionname/addclass" exact>
+            <AddClassForm user={user} />
+          </Route>
+
+
+          <Route path="/:myClassName/classroom/:subjectName" exact component={ClassRoom} />
+          <Route path="/:myClassName/classroom" exact component={ClassRoom} />
+
+
+          <Route path="/:ClassRoomName/managesubjects" exact>
+            <ManageSubject user={user} />
+          </Route>
+
+          <Route path="/:ClassRoomName/managestudents" exact>
+            <ManageStudent user={user} />
+          </Route>
+
+          <Route path='/resultsgenerator' exact>
+            <ResultsGenerator user={user} />
+          </Route>
+
+
+          <Route path="/results" exact>
+            <PrintResult user={user} />
+          </Route>
+
+
+          <Route path="/admin" exact>
+            <ChangePwd user={user} />
+          </Route>
+
+          <Route path="/gotoClass" exact>
+            <GotoClass user={user} />
+          </Route>
+
+        </Switch>
+
+      </Router >
+
+    );
+  }
+
 }
-
-
 
