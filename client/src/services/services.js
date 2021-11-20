@@ -3,7 +3,6 @@ import db from '../db'
 export const dbServices = {
     //FETCH OR GET REQUESTS
     getResultData: (setCurrentData, setScore, setStudent, setSubjects, setSection) => {
-
         db.get('resultData')
             .then(result => {
                 if (result) {

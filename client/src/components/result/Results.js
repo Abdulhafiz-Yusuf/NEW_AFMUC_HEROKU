@@ -6,6 +6,7 @@ import Logo from './logo.jpg'
 import * as Data from './ResultData'
 import { Table } from './ResultTables';
 import { dbServices } from '../../services/services';
+import { getResultData } from '../../AppStore/actions/ResultActions';
 
 
 
@@ -13,7 +14,7 @@ import { dbServices } from '../../services/services';
 //IMPORTING IPCRENDERER
 
 
-function Results() {
+function Results({ uid }) {
 
     const [students, setStudent] = React.useState([])
     const [scores, setScore] = React.useState({})
@@ -22,7 +23,7 @@ function Results() {
 
     React.useEffect(() => {
         // fetch resultData from db and store in State
-        dbServices.getResultData(setCurrentData, setScore, setStudent, setSubjects)
+        getResultData(setCurrentData, setScore, setStudent, setSubjects, uid)
     }, [])
     console.log(currentData)
 
@@ -34,16 +35,15 @@ function Results() {
                 students.map((student, id) => {
                     return (
                         <Card key={id} id='result' className='h-90 d-flex justify-content-center align-items-center flex-column' >
-
                             <div className='d-flex'>
                                 <img style={{ width: '100px', height: '100px' }} src={Logo} alt='Logo' />
                                 <div className='d-flex ml-3 flex-column align-items-center mb-1'>
 
                                     <h2 className='text-success text-center font-weight-bold' >AFMUC INTERNATIONAL MISSIONARY SCHOOL</h2>
                                     <h5 className='w-75 mt-0 text-success text-center font-weight-bold' >Aker/Saipem Road, Aker Junction, Azumini, Rumuolumeni, Portharcourt, Rivers State<br />
-                                                                        Tel: 0810 324 2265, 0803 704 8190
-                                                                E-mail: afmuc1@yahoo.com
-                                                                                </h5>
+                                        Tel: 0810 324 2265, 0803 704 8190
+                                        E-mail: afmuc1@yahoo.com
+                                    </h5>
                                 </div>
 
 

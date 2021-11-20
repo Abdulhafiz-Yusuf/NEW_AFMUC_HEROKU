@@ -7,10 +7,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { dbServices } from '../../services/services';
+import { getResultGeneratorData, saveresultData } from '../../AppStore/actions/ResultActions';
 
 
-function ResultsGenerator() {
-
+function ResultsGenerator(props) {
+    const uid = props.user.uid
     const [ResultGenData, setResultGenData] = useState({
         section: [],
         selectedSection: '',
@@ -24,7 +25,7 @@ function ResultsGenerator() {
 
     useEffect(() => {
         let tempClassValue = []
-        dbServices.getResultGeneratorData(ResultGenData, setResultGenData, tempClassValue)
+        getResultGeneratorData(ResultGenData, setResultGenData, tempClassValue, uid)
     }, [])
 
     const handleChange = (e) => {
@@ -50,7 +51,7 @@ function ResultsGenerator() {
         else {
             //save resultData
             console.log(Data)
-            dbServices.saveresultData(Data)
+            saveresultData(Data, uid)
         }
     }
 

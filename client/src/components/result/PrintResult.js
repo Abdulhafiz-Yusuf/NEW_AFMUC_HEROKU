@@ -4,8 +4,9 @@ import ResultClassBased from './ResultClassBased'
 import { useReactToPrint } from 'react-to-print';
 import { Button } from 'reactstrap';
 
-function PrintResult() {
-    const [buttonDisplay, setbtnDisplay] = React.useState({ display: 'flex' })
+function PrintResult(props) {
+    const uid = props.user.uid
+    const [buttonDisplay, setbtnDisplay] = React.useState({ display: 'flex', marginTop: '-120px' })
 
     const componentRef = useRef();
 
@@ -20,15 +21,17 @@ function PrintResult() {
 
     return (
         <div>
-            < div className='mb-5 mt-5 align-self-center justify-content-lg-center' style={buttonDisplay}>
+            < div className='mb-5 align-self-center justify-content-lg-center' style={buttonDisplay}>
                 <Button className='mr-4 text-light font-weight-bold'
+                    style={{ width: '50vh', height: '10vh' }}
                     color='success'
                     onClick={backHandler}>BACK</Button>
                 <Button className='text-light font-weight-bold'
+                    style={{ width: '50vh' }}
                     color='success'
                     onClick={handlePrint}>PRINT</Button>
             </div >
-            <ResultClassBased ref={componentRef} style={{ buttonDisplay }} />
+            <ResultClassBased ref={componentRef} style={{ buttonDisplay }} uid={uid} />
         </div>
 
     );

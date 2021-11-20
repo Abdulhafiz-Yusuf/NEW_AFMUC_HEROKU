@@ -4,9 +4,8 @@ import
     from '../../services/firebase/FirebaseConfig'
 
 //Firestore Refs
-const ResultDataRef = db.collection('result');
 const SectiontDataRef = db.collection('section');
-const orderDataRef = db.collection("order");
+
 
 
 
@@ -48,7 +47,6 @@ export const fetchAllSections = (setClassSection, uid) => {
         )
 }
 
-
 export const saveAllClasses = (history, sectionName, classess, uid) => {
     console.log(classess)
     SectiontDataRef.doc(uid)
@@ -71,8 +69,6 @@ export const saveAllClasses = (history, sectionName, classess, uid) => {
 
 
 }
-
-
 
 
 export const fetchAllClasses = (sectionName, setClasses, uid) => {
@@ -195,8 +191,6 @@ export const getSubjects = (ClassName, setAllmySubjects, uid) => {
         )
 }
 
-
-
 export const saveScoreSheet = (ClassName, currentSubject, scoreDisplayData, settextChange, textChange, uid) => {
     SectiontDataRef.doc(uid).get().then(resp => {
         let result = resp.data()[ClassName]
@@ -295,10 +289,7 @@ export const fetchScoreData = (ClassName, currentSubject, setScore, tempData, ui
         })
 }
 
-
-
-export const getResultGeneratorData = (ResultGenData, setResultGenData, tempClassValue, uid) => {
-
+export const getGotoClassData = (ResultGenData, setResultGenData, tempClassValue, uid) => {
     SectiontDataRef.doc(uid).get()
         .then(resp => {
             let result = resp.data()
@@ -316,3 +307,69 @@ export const getResultGeneratorData = (ResultGenData, setResultGenData, tempClas
         })
 
 }
+
+export const saveresultData = (Data, uid) => {
+    SectiontDataRef.doc(uid).get().then(result => {
+        SectiontDataRef.doc(uid)
+            .update({ resultData: Data })
+            .then(() => {
+                window.location = '/results'
+            }).catch(function (err) {
+                console.log(err)
+            })
+            .catch(function (err) {
+                if (err)
+                    console.log(err + ' not updated')
+            });
+
+    })
+}
+
+export const getResultGeneratorData = (ResultGenData, setResultGenData, tempClassValue, uid) => {
+    SectiontDataRef.doc(uid).get()
+        .then(resp => {
+            let result = resp.data()
+
+            setResultGenData({ ...ResultGenData, noOfClasses: result.category.length })
+            result.category.forEach((element, index, array) => {
+                if (result[element.cat_name.toLocaleLowerCase()]) {
+                    let Classes = result[element.cat_name.toLocaleLowerCase()]
+                    tempClassValue = tempClassValue.concat(Classes)
+                    setResultGenData({
+                        ...ResultGenData,
+                        noOfClasses: index + 1,
+                        class: tempClassValue,
+                        selectedClass: tempClassValue[0].class_name,
+                        section: array, selectedSection: array[0].cat_name
+                    })
+                }
+            })
+        })
+}
+
+
+
+export const getResultData = (setCurrentData, setScore, setStudent, setSubjects, uid) => {
+    SectiontDataRef.doc(uid).get()
+        .then(resp => {
+            let result = resp.data()
+            if (result) {
+                //is resultData available in db store it in State
+                setCurrentData(result.resultData)
+                //fetch classroom Data from db and save in State
+                const selectedClass = result.resultData.selectedClass.toLocaleLowerCase() // e.g nursery 1 === result.resultData.selectedClass.toLocaleLowerCase()
+                setScore(result[selectedClass].scores);
+                //      scores: {
+                //     eng: [{ fName, sName, Test1, Test2, Exam }]
+                //     math:[{fName,sName,Test1,Test2,Exam}]
+                // }
+                setStudent(result[selectedClass].students);
+                // students: Array(3) i.e students = [{fName,sName,gender}]
+                setSubjects(result[selectedClass].subjects)
+                // subjects: Array(3) i.e subjects = [{subjectName:"ENGLISH STUDIES", teacherName:"MRS. HAFSOH"}, eng}]
+
+            }
+        })
+        .catch(err => console.log(err))
+}
+

@@ -19,6 +19,7 @@ import NavBar from './components/NavBar';
 import PrintResult from './components/result/PrintResult';
 import Firebase from './services/firebase/FirebaseConfig';
 import LoadScreen from './components/common/LoadScreen';
+import Results from './components/result/Results';
 
 
 
@@ -133,6 +134,14 @@ export default function App() {
               <ResultsGenerator {...props} user={user} />
             )}
           />
+
+
+          {/* <Route
+            path="/result"
+            render={(props) => (
+              <Results {...props} user={user} />
+            )}
+          /> */}
 
           <Route
             path="/results"

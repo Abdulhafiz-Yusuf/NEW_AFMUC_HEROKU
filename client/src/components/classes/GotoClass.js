@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { getResultGeneratorData } from '../../AppStore/actions/ResultActions';
+import { getGotoClassData } from '../../AppStore/actions/ResultActions';
 
 
 //DATEPICKER AND ITS CSS
-import { dbServices } from '../../services/services';
+
 
 
 function ResultsGenerator(props) {
@@ -21,7 +21,7 @@ function ResultsGenerator(props) {
 
     useEffect(() => {
         let tempClassValue = []
-        getResultGeneratorData(ResultGenData, setResultGenData, tempClassValue, uid)
+        getGotoClassData(ResultGenData, setResultGenData, tempClassValue, uid)
     }, [])
 
     const handleChange = (e) => {
