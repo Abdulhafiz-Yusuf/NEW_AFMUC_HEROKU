@@ -65,7 +65,7 @@ function SignUp() {
                     </FormGroup>
                     <FormGroup >
                         <Label for="username" className='text-success font-weight-bold'>Email Address</Label>
-                        <Input type="email" name="email" value={profile.email} onChange={handleChange} placeholder="example@gmail.com" />
+                        <Input type="email" name="email" value={profile.email} onChange={handleChange} placeholder=" e.g myname@gmail.com" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="password" className='text-success font-weight-bold'>Password</Label>
