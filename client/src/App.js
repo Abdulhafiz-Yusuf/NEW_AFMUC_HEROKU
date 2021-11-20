@@ -53,20 +53,17 @@ export default function App() {
   }, []);
 
 
-
-
-
   if (isLoading) {
     return (
-      // <div className='container d-flex justify-content-center align-items-center h-75'>
-      //   <Card>
-      //     <h2>Loading .... </h2>
-      //   </Card>
-      // </div>
       <LoadScreen text='' height='100vh' />
     )
   }
-  else {
+  if (!user) {
+    return (
+      <LoadScreen text='' height='100vh' />
+    )
+  }
+  else if (user) {
     return (
       <Router TestId='App'>
         <NavBar />
@@ -85,9 +82,7 @@ export default function App() {
 
 
 
-          {/* <Route path="/:sectionname/classes" exact>
-            <AllClasses props={...props} />
-         </Route> */}
+
 
           <Route
             path='/:sectionname/classes'
@@ -104,15 +99,17 @@ export default function App() {
             )}
           />
 
-
           <Route path="/addsection" exact>
             <AddClassSectionForm user={user} />
           </Route>
 
+          <Route
+            path="/:sectionname/addclass"
+            render={(props) => (
+              <AddClassForm {...props} user={user} />
+            )}
+          />
 
-          <Route path="/:sectionname/addclass" exact>
-            <AddClassForm user={user} />
-          </Route>
 
 
           <Route path="/:myClassName/classroom/:subjectName" exact component={ClassRoom} />

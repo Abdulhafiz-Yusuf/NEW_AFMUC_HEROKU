@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
+import { fetchAllClasses } from '../../AppStore/actions/ResultActions';
 import { dbServices } from '../../services/services';
 
 
-
-
 function AddclassClassesForm(props) {
+    console.log(props)
     const sectionName = props.match.params.sectionname.toLocaleLowerCase()
     console.log(sectionName)
     const [Classes, setClasses] = useState([])
@@ -13,7 +13,9 @@ function AddclassClassesForm(props) {
 
     useEffect(() => {
         //     //fetchAllClassess
-        dbServices.fetchAllClasses(sectionName, setClasses, Classes)
+        fetchAllClasses(sectionName, setClasses,
+            //    uid
+        )
     }, [])
 
     const changeHandler = (e) => {

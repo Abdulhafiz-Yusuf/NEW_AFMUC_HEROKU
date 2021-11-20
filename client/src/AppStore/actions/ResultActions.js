@@ -52,7 +52,6 @@ export const addToSection = (dispatch, data, setLoading, setError, props) => {
 
 }
 
-
 export const fetchAllSections = (setClassSection, uid) => {
     console.log(uid)
     SectiontDataRef
@@ -62,6 +61,23 @@ export const fetchAllSections = (setClassSection, uid) => {
             if (result)
                 setClassSection(result.data().category)
             // else alert('You have no')
+        })
+        .catch(err =>
+            console.log(err)
+        )
+}
+
+
+export const fetchAllClasses = (sectionName, setClasses, uid) => {
+    // const sectionName = sectionName
+    SectiontDataRef
+        .doc(uid)
+        .get()
+        .then((result) => {
+            if (result) {
+                setClasses(result.data().sectionName)
+                // else alert('You have no')
+            }
         })
         .catch(err =>
             console.log(err)
