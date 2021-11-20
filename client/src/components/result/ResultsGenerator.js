@@ -43,7 +43,8 @@ function ResultsGenerator(props) {
             term: ResultGenData.term,
             selectedSection: ResultGenData.selectedSection,
             selectedClass: ResultGenData.selectedClass,
-            nextTermBeing: ResultGenData.nextTermBeing.toDateString()
+            nextTermBeing: ResultGenData.nextTermBeing.toDateString(),
+            session: ResultGenData.session
         }
         if (ResultGenData.session === '') {
             alert("'Session' cannot be empty")

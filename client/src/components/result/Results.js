@@ -82,10 +82,10 @@ function Results({ uid }) {
                                 }
                             </div >
                             <div className='mt-3 w-100 d-flex flex-column justify-content-between'>
-                                <Label className='font-weight-bold w-100 text-success'>Class Teacher's Remark: _______________________________________________________________________________________________</Label>
-                                <Label className='font-weight-bold w-100 text-success'>_______________________________________________________________________________________ Signature: ____________________</Label>
-                                <Label className='font-weight-bold w-100 text-success'>Group Director's Remark: ______________________________________________________________________________________________</Label>
-                                <Label className='font-weight-bold w-100 text-success'>_______________________________________________________________________________________ Signature: ____________________</Label>
+                                <Label className='font-weight-bold w-100 text-success'>Class Teacher's Remark: ___________________________________________________________________________________________</Label>
+                                <Label className='font-weight-bold w-100 text-success'>___________________________________________________________________________________ Signature: ____________________</Label>
+                                <Label className='font-weight-bold w-100 text-success'>Group Director's Remark: __________________________________________________________________________________________</Label>
+                                <Label className='font-weight-bold w-100 text-success'>___________________________________________________________________________________ Signature: ____________________</Label>
                             </div>
                         </Card >
 
