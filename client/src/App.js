@@ -61,8 +61,14 @@ export default function App() {
   }
   if (!user) {
     return (
-      <LoadScreen text='' height='100vh' />
+      <Router TestId='App'>
+        <Switch >
+          <Route path="/" exact component={LogIn} />
+        </Switch>
+      </Router>
     )
+
+
   }
   else if (user) {
     return (
