@@ -40,7 +40,7 @@ const NavBar = () => {
 
                             <li className="nav-item">
                                 <Link to='/allclassSection'>
-                                    <Button color='success' className='bg-success m-2 text-light' >
+                                    <Button color='success' className='bg-success m-2 text-light font-weight-bold' >
                                         All Sections
                                     </Button>
                                 </Link>
@@ -48,20 +48,9 @@ const NavBar = () => {
                             </li>
 
 
-                            {/* <li className="nav-item">
-                                <Link to='/allclassSection'>
-                                    <Button color='success' className='bg-success m-2 text-light' >
-                                        All Classes
-                                    </Button>
-                                </Link>
-
-                            </li> */}
-
-
-
                             <li className="nav-item">
                                 <Link to='/gotoClass'>
-                                    <Button color='success' className='bg-success m-2 text-light' >
+                                    <Button color='success' className='bg-success m-2 text-light font-weight-bold' >
                                         Go to Class
                                     </Button>
                                 </Link>
@@ -69,7 +58,7 @@ const NavBar = () => {
                             </li>
                             <li className="nav-item">
                                 <Link to='/resultsgenerator'>
-                                    <Button color='success' className='bg-success m-2 text-light' >
+                                    <Button color='success' className='bg-success m-2 text-light font-weight-bold' >
                                         Result
                                     </Button>
                                 </Link>
@@ -77,8 +66,8 @@ const NavBar = () => {
 
                             <li className="nav-item">
                                 <Link to='/'>
-                                    <Button color='success ' className='bg-success m-2 text-light' onClick={() => setStyles({ display: 'none' })} >
-                                        LogOut
+                                    <Button color='success ' className='bg-success m-2 text-light font-weight-bold' onClick={() => setStyles({ display: 'none' })} >
+                                        Log Out
                                     </Button>
                                 </Link>
 
