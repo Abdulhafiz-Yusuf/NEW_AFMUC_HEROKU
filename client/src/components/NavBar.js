@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, Button } from 'reactstrap';
 
 //Logo
 import Logo from './logo.jpg'
 
 const NavBar = () => {
-
+    const history = useHistory()
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const [styles, setStyles] = useState({ display: 'flex', flexDirection: 'column', justifyContent: 'start' })
 
     useEffect(() => {
+        console.log(history)
         if (window.location.pathname === '/' || window.location.pathname === '/result')
             setStyles({ display: 'none' })
         else {
@@ -45,6 +46,16 @@ const NavBar = () => {
                                 </Link>
 
                             </li>
+
+
+                            {/* <li className="nav-item">
+                                <Link to='/allclassSection'>
+                                    <Button color='success' className='bg-success m-2 text-light' >
+                                        All Classes
+                                    </Button>
+                                </Link>
+
+                            </li> */}
 
 
 

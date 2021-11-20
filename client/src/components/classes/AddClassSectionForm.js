@@ -7,9 +7,9 @@ import { fetchAllSections, saveAllSection } from '../../AppStore/actions/ResultA
 
 
 function AddclassCategoryForm({ user }) {
-    console.log(user)
+
     const history = useHistory();
-    console.log(user)
+
     const [ClassSection, setClassSection] = useState([])
     const [Section, setSection] = React.useState({ cat_name: '', hod_name: '', })
 

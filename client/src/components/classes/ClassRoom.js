@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react'
 import ManageCard from '../cards/ManageCard'
 import { Label, Input } from 'reactstrap';
 import ScoreSheetTable from './ScoreSheetTables';
-import { dbServices } from '../../services/services';
+import { fetchStudentsAndSubjectsAndScores } from '../../AppStore/actions/ResultActions';
+import { useHistory } from 'react-router-dom';
+
 
 function ClassRoom(props) {
     const subjectName = props.match.params.subjectName
+    // const history = useHistory()
+    const uid = props.user.uid
 
     let ClassName = props.match.params.myClassName.toLocaleLowerCase()
     const [students, setstudents] = useState([])
@@ -16,7 +20,7 @@ function ClassRoom(props) {
     useEffect(() => {
 
         //fetch All subjects and scores for subject
-        dbServices.fetchStudentsAndSubjectsAnsScores(ClassName, setstudents, setAllSubject, setScore, allSubjects)
+        fetchStudentsAndSubjectsAndScores(ClassName, setstudents, setAllSubject, setScore, allSubjects, uid)
 
         if (subjectName) {
             alert('ERROR OCCURED!\n \nPlease ensure to enter ' + subjectName + ' score for each student')
@@ -58,7 +62,7 @@ function ClassRoom(props) {
                             // the subjects Option drop
                             < div >
                                 <h4 className='text-success text-center font-weight-bold' >Scoresheet for
-                                        <i className='text-danger'>{allSubjects.currentSubject}</i></h4>
+                                    <i className='text-danger'> {allSubjects.currentSubject}</i></h4>
                                 <div className='d-flex'>
                                     < Label for="exampleSelect">Change Subject:</Label>
                                     <Input type="select" name="currentSubject" value={allSubjects.currentSubject}
@@ -75,9 +79,9 @@ function ClassRoom(props) {
 
                 </div>
                 {
-                    // students.length !== 0 &&
+                    students.length !== 0 &&
                     < ScoreSheetTable ClassName={ClassName} students={students} scoreDisplayData={scoreDisplayData.score}
-                        currentSubject={allSubjects.currentSubject} />
+                        currentSubject={allSubjects.currentSubject} uid={uid} />
                 }
             </div>
         </div >

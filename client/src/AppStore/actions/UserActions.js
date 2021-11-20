@@ -21,11 +21,11 @@ export function login(dispatch, email, password, setError, setLoading, history) 
                         payload: user
                     })
                     setLoading(false)
-                    // window.location = '/allclassSection'
-                    history.push({
-                        pathname: '/allclassSection',
-                        state: user
-                    });
+                    window.location = '/allclassSection'
+                    // history.push({
+                    //     pathname: '/allclassSection',
+                    //     state: user
+                    // });
                 })
                 .catch(error => {
                     setError('Login Failed. Please try again.')

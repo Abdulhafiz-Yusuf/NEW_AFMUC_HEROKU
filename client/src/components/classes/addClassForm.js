@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
-import { fetchAllClasses } from '../../AppStore/actions/ResultActions';
-import { dbServices } from '../../services/services';
+import { fetchAllClasses, saveAllClasses } from '../../AppStore/actions/ResultActions';
+
 
 
 function AddclassClassesForm(props) {
-    console.log(props)
+    const history = useHistory()
     const sectionName = props.match.params.sectionname.toLocaleLowerCase()
-    console.log(sectionName)
+
+    const uid = props.user.uid
+
     const [Classes, setClasses] = useState([])
     const [myClass, setmyClass] = useState({ class_name: '', teacher_name: '', })
 
     useEffect(() => {
-        //     //fetchAllClassess
-        fetchAllClasses(sectionName, setClasses,
-            //    uid
-        )
+        //fetchAllClassess
+        fetchAllClasses(sectionName, setClasses, uid)
     }, [])
 
     const changeHandler = (e) => {
@@ -79,7 +80,7 @@ function AddclassClassesForm(props) {
         }
         else {
             //saveClasses to DB
-            dbServices.saveClasses(sectionName, Classes)
+            saveAllClasses(history, sectionName, Classes, uid)
         }
     }
 

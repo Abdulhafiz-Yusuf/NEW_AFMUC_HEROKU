@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 const CardComp = ({ Class, ClassSection }) => {
-    console.log(ClassSection.cat_name.toLocaleLowerCase())
+
     let lowerCaseClassSection;
     let lowerCaseClass;
     if (Class) {

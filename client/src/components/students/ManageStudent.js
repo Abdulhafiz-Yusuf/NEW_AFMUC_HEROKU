@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
-
+import { getStudentsAndScore, saveStudents } from '../../AppStore/actions/ResultActions';
+import { useHistory } from 'react-router-dom';
 import { dbServices } from '../../services/services';
 
 
 function ManageStudent(props) {
     const ClassName = props.match.params.ClassRoomName.toLocaleLowerCase()
-
+    const history = useHistory()
+    const uid = props.user.uid
     const gender = ['MALE', 'FEMALE']
     const [AllmyStudent, setAllmyStudent] = useState([])
     //const [studentInScores, setstudentInScores] = useState({})
@@ -16,7 +18,7 @@ function ManageStudent(props) {
 
     useEffect(() => {
         //fetch All Students
-        dbServices.getStudentsAndScore(ClassName, setAllmyStudent, AllmyStudent, setScore)
+        getStudentsAndScore(ClassName, setAllmyStudent, setScore, uid)
 
     }, [])
 
@@ -76,7 +78,7 @@ function ManageStudent(props) {
 
         else {
             //Save Students to DB
-            dbServices.saveStudents(ClassName, AllmyStudent)
+            saveStudents(history, ClassName, AllmyStudent, uid)
         }
     }
 

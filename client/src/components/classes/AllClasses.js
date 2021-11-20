@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react'
 import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
 import AddingMoreCard from '../cards/AddingMoreCard';
+import { fetchAllClasses } from '../../AppStore/actions/ResultActions';
 
-import { dbServices } from '../../services/services'
 
 
 function AllClasses(props) {
@@ -21,11 +21,11 @@ function AllClasses(props) {
     console.log(props)
     let sectionName = props.match.params.sectionname
 
-
+    const uid = props.user.uid
     //* 1.   useEffect = fetch all class category
     useEffect(() => {
         //fetch All classes
-        // dbServices.fetchAllClasses(sectionName, setClasses, Classes)
+        fetchAllClasses(sectionName, setClasses, uid)
     }, [])
     return (
         <div>

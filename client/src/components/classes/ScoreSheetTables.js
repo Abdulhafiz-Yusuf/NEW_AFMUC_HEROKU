@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Loading from '../reusables/Loading'
 import { Table, Input, Button } from 'reactstrap';
 import { dbServices } from "../../services/services";
+import { fetchScoreData, saveScoreSheet } from "../../AppStore/actions/ResultActions";
 
-const ScoreSheetTables = ({ currentSubject, ClassName }) => {
+const ScoreSheetTables = ({ currentSubject, ClassName, uid }) => {
 
     const [scoreDisplayData, setScore] = useState([])
     const [textChange, settextChange] = useState(true)
@@ -11,7 +12,7 @@ const ScoreSheetTables = ({ currentSubject, ClassName }) => {
 
     useEffect(() => {
         let tempData = [];
-        dbServices.fetchScoreData(ClassName, currentSubject, setScore, tempData)
+        fetchScoreData(ClassName, currentSubject, setScore, tempData, uid)
     }, [currentSubject])
 
     const changeHandler = async (e) => {
@@ -47,7 +48,7 @@ const ScoreSheetTables = ({ currentSubject, ClassName }) => {
             }
             else {
                 //save scoreSheet to DB
-                dbServices.saveScoreSheet(ClassName, currentSubject, scoreDisplayData, settextChange, textChange)
+                saveScoreSheet(ClassName, currentSubject, scoreDisplayData, settextChange, textChange, uid)
             }
 
         }

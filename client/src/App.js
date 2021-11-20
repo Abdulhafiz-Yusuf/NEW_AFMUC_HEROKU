@@ -111,36 +111,64 @@ export default function App() {
           />
 
 
+          <Route
+            path="/:ClassRoomName/managestudents"
+            render={(props) => (
+              <ManageStudent {...props} user={user} />
+            )}
+          />
 
-          <Route path="/:myClassName/classroom/:subjectName" exact component={ClassRoom} />
-          <Route path="/:myClassName/classroom" exact component={ClassRoom} />
-
-
-          <Route path="/:ClassRoomName/managesubjects" exact>
-            <ManageSubject user={user} />
-          </Route>
-
-          <Route path="/:ClassRoomName/managestudents" exact>
-            <ManageStudent user={user} />
-          </Route>
-
-          <Route path='/resultsgenerator' exact>
-            <ResultsGenerator user={user} />
-          </Route>
+          <Route
+            path="/:ClassRoomName/managesubjects"
+            render={(props) => (
+              <ManageSubject {...props} user={user} />
+            )}
+          />
 
 
-          <Route path="/results" exact>
-            <PrintResult user={user} />
-          </Route>
 
+          <Route
+            path='/resultsgenerator'
+            render={(props) => (
+              <ResultsGenerator {...props} user={user} />
+            )}
+          />
 
-          <Route path="/admin" exact>
-            <ChangePwd user={user} />
-          </Route>
+          <Route
+            path="/results"
+            render={(props) => (
+              <PrintResult {...props} user={user} />
+            )}
+          />
 
-          <Route path="/gotoClass" exact>
-            <GotoClass user={user} />
-          </Route>
+          <Route
+            path="/:myClassName/classroom/:subjectName"
+            render={(props) => (
+              <ClassRoom {...props} user={user} />
+            )}
+          />
+
+          <Route
+            path="/:myClassName/classroom"
+            render={(props) => (
+              <ClassRoom {...props} user={user} />
+            )}
+          />
+
+          <Route
+            path="/admin"
+            render={(props) => (
+              <ChangePwd {...props} user={user} />
+            )}
+          />
+
+          <Route
+            path="/gotoClass"
+            render={(props) => (
+              <GotoClass {...props} user={user} />
+            )}
+          />
+
 
         </Switch>
 

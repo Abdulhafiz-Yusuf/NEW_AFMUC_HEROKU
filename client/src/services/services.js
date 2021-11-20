@@ -69,6 +69,7 @@ export const dbServices = {
     },
 
     getStudentsAndScore: (ClassName, setAllmyStudent, AllmyStudent, setScore) => {
+        console.log(ClassName)
         db.get(ClassName)
             .then(result => {
                 if (result.students) {

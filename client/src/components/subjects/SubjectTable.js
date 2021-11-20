@@ -1,10 +1,10 @@
 import React from 'react'
 import { Table, Button } from 'reactstrap';
-import { dbServices } from '../../services/services';
+
+import { dbUpdateSubject } from '../../AppStore/actions/ResultActions';
 
 
-
-function SubjectTable({ AllmySubjects, setAllmySubjects, className }) {
+function SubjectTable({ AllmySubjects, setAllmySubjects, history, ClassName, uid }) {
 
     const DeleteHandler = (e) => {
         const currentIndex = e.target.id
@@ -19,7 +19,7 @@ function SubjectTable({ AllmySubjects, setAllmySubjects, className }) {
             alert(`Atleast one mySubjects must be must added`)
         }
         else {
-            dbServices.dbUpdateSubject(className, AllmySubjects)
+            dbUpdateSubject(history, ClassName, AllmySubjects, uid)
         }
     }
     return (
@@ -57,7 +57,7 @@ function SubjectTable({ AllmySubjects, setAllmySubjects, className }) {
             </Table>
 
             <div className='d-flex align-self-center justify-content-lg-center '>
-                <Button className='text-light font-weight-bold'
+                <Button className='text-light font-weight-bold mb-5'
                     color='success'
                     onClick={onSubmit}>Submit</Button>
             </div>

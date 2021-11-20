@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
-import { dbServices } from '../../services/services';
-
+import { useHistory } from 'react-router-dom';
 import SubjectTable from './SubjectTable';
+import { getSubjects } from '../../AppStore/actions/ResultActions';
 
 
 
 function ManageSubject(props) {
     const className = props.match.params.ClassRoomName.toLocaleLowerCase()
-    console.log(className)
+    const history = useHistory()
+    const uid = props.user.uid
+
     const [AllmySubjects, setAllmySubjects] = useState([])
     const [mySubjects, setmySubjects] = useState({ subjectName: '', teacherName: '', })
 
     useEffect(() => {
         //fetch subjects and display in table
-        dbServices.getSubjects(className, setAllmySubjects, AllmySubjects);
+        getSubjects(className, setAllmySubjects, uid);
     }, [])
 
 
@@ -72,7 +74,7 @@ function ManageSubject(props) {
                             onClick={AddmySubjectsHandler}>Add Subjects</Button>
                     </div>
                 </Card>
-                <SubjectTable AllmySubjects={AllmySubjects} setAllmySubjects={setAllmySubjects} className={className} />
+                <SubjectTable history={history} AllmySubjects={AllmySubjects} setAllmySubjects={setAllmySubjects} ClassName={className} uid={uid} />
             </div>
 
         </div>
