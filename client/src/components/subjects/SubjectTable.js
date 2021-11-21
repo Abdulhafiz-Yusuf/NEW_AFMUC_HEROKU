@@ -23,7 +23,7 @@ function SubjectTable({ AllmySubjects, setAllmySubjects, history, ClassName, uid
         }
     }
     return (
-        <div class='w-100'>
+        <div className='w-100'>
             <Table className='text-success' bordered hover striped>
                 <thead>
                     <tr>

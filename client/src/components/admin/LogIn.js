@@ -91,9 +91,7 @@ export default function Login() {
                 <Label className='text-danger font-weight-bold m-2 font-italic text-center '>
                     {error}
                 </Label>
-                {/* <h6 className='mt-3 mb-3 text-danger'>Forgot Password?
-                 <Link to='/signup'>  Reset</Link>
-                </h6> */}
+
 
                 {renderButton()}
 

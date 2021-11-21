@@ -1,20 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { globalStore } from '../../AppStore/globalStore';
-import { dbServices } from '../../services/services';
+
 import { singUp } from '../../AppStore/actions/UserActions'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LoadScreen from '../common/LoadScreen';
 
 function SignUp() {
-    const { state, dispatch } = useContext(globalStore)
 
-    const history = useHistory()
     const [profile, setProfile] = React.useState({
         username: '',
         fullName: '',
         email: '',
-        password: '',
         section: '',
         password: '',
         confirmPassword: ''
@@ -46,12 +42,9 @@ function SignUp() {
 
 
         else {
-            //authenticate Admin
-            // dbServices.authenticateAdmin(profile)
-
             setLoading(true)
             //Register User
-            singUp(history, dispatch, profile.username, profile.email, profile.password, profile.section, setError, setLoading)
+            singUp(profile.username, profile.email, profile.password, profile.section, setError, setLoading)
         }
     }
 
@@ -99,7 +92,9 @@ function SignUp() {
                         <Input type="password" name="confirmPassword" value={profile.confirmPassword} onChange={handleChange} placeholder="xxxxxxx" />
                     </FormGroup>
                 </Form>
-
+                <Label className='text-danger font-weight-bold m-2 font-italic text-center '>
+                    {Error}
+                </Label>
                 {renderButton()}
 
                 <h6 className='mt-3 mb-3'>Already have an account?

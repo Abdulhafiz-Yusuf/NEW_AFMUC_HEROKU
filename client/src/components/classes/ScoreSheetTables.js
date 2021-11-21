@@ -18,8 +18,7 @@ const ScoreSheetTables = ({ currentSubject, ClassName, uid }) => {
     const changeHandler = async (e) => {
         let value = parseInt(e.target.value, 10) || 0;  //assign an integer to value OR 0 if NaN
         let currentIndex = parseInt(e.target.id, 10) //assign an integer to value OR 0 if NaN
-        console.log(currentIndex)
-        console.log(scoreDisplayData)
+
         let tempStateData = scoreDisplayData //Create a dummy array variable to hold scoreDisplayData 
 
         tempStateData[currentIndex][e.target.name] = value //NB: scoreDisplayData  === [{ fName: element.fName, sName: element.sName, Test1: 0, Test2: 0, Exam: 0 }]

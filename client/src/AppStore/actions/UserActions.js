@@ -56,7 +56,7 @@ export const onLogOut = (dispatch, history, setisLoading) => {
 
 }
 
-export const singUp = (history, dispatch, username, email, password, section, setError, setLoading) => {
+export const singUp = (username, email, password, section, setError, setLoading) => {
     setError('')
 
     Firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -70,10 +70,6 @@ export const singUp = (history, dispatch, username, email, password, section, se
             };
             usersRef.doc(uid).set(data)
                 .then(() => {
-                    dispatch({
-                        type: 'GET_CURRENT_USER',
-                        payload: data
-                    })
                     setLoading(false)
                     window.location = '/allclassSection'
                     // history.push({

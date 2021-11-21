@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { Table, Card, Form, Label, Input, Button, FormGroup } from 'reactstrap';
-import { globalStore } from '../../AppStore/globalStore';
 import { useHistory } from 'react-router-dom';
-import { dbServices } from '../../services/services';
 import { fetchAllSections, saveAllSection } from '../../AppStore/actions/ResultActions';
 
 
@@ -10,14 +8,15 @@ function AddclassCategoryForm(props) {
 
     const uid = props.user.uid
     const history = useHistory();
-
+    const [Loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const [ClassSection, setClassSection] = useState([])
     const [Section, setSection] = React.useState({ cat_name: '', hod_name: '', })
 
     useEffect(() => {
         //fetchAllSection
-        fetchAllSections(setClassSection, uid)
-    }, [])
+        fetchAllSections(setClassSection, uid, setLoading, setError)
+    }, [uid])
 
 
     const changeHandler = (e) => {

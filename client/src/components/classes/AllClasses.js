@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import db from '../../db'
-
-
 import CardList from '../cards/CardList'
 import AddingCard from '../cards/AddingCard'
 import AddingMoreCard from '../cards/AddingMoreCard';
 import { fetchAllClasses } from '../../AppStore/actions/ResultActions';
+import LoadScreen from '../common/LoadScreen';
+import { Label } from 'reactstrap';
 
 
 
@@ -18,15 +17,17 @@ function AllClasses(props) {
      *  */
 
     const [Classes, setClasses] = useState([])
-    console.log(props)
-    let sectionName = props.match.params.sectionname
 
+    let sectionName = props.match.params.sectionname
+    const [Loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const uid = props.user.uid
+
     //* 1.   useEffect = fetch all class category
     useEffect(() => {
         //fetch All classes
-        fetchAllClasses(sectionName, setClasses, uid)
-    }, [])
+        fetchAllClasses(sectionName, setClasses, uid, setLoading, setError)
+    }, [uid, sectionName])
     return (
         <div>
 
@@ -34,24 +35,32 @@ function AllClasses(props) {
 
                 <h4 className='justify-self-center text-center text-danger mt-4 font-weight-bold' >{sectionName.toLocaleUpperCase()} SECTION</h4>
                 {
-                    Classes.length === 0 ?
-                        <div>
-                            <h4 className='text-success text-center mb-3 font-weight-bold'>
-                                <em>
-                                    SORRY YOU HAVE NO CLASSES AVAILABLE IN THIS SECTION. <br />PLEASE CLICK THE BUTTON BELOW TO ADD CLASS TO THIS SECTION
-                                </em>
-                            </h4>
-                            <AddingCard sectionName={sectionName} addtype='class' />
-                        </div>
+                    Loading ?
+                        <LoadScreen />
                         :
-                        // Classes.length === 0 ?
-                        //     <Loading />
-                        //     :
-                        Classes.length !== 0 &&
-                        <div className='d-flex flex-row flex-wrap'>
-                            <CardList Classes={Classes} />
-                            <AddingMoreCard sectionName={sectionName} addtype='class' />
-                        </div>
+                        error ?
+                            <Label className='text-danger font-weight-bold m-2 font-italic text-center '>
+                                {error}
+                            </Label>
+                            :
+                            Classes.length === 0 ?
+                                <div>
+                                    <h4 className='text-success text-center mb-3 font-weight-bold'>
+                                        <em>
+                                            SORRY YOU HAVE NO CLASSES AVAILABLE IN THIS SECTION. <br />PLEASE CLICK THE BUTTON BELOW TO ADD CLASS TO THIS SECTION
+                                        </em>
+                                    </h4>
+                                    <AddingCard sectionName={sectionName} addtype='class' />
+                                </div>
+                                :
+                                // Classes.length === 0 ?
+                                //     <Loading />
+                                //     :
+                                Classes.length !== 0 &&
+                                <div className='d-flex flex-row flex-wrap'>
+                                    <CardList Classes={Classes} />
+                                    <AddingMoreCard sectionName={sectionName} addtype='class' />
+                                </div>
 
                 }
             </div>

@@ -27,19 +27,26 @@ export const saveAllSection = (history, ClassSection, uid) => {
         });
 }
 
-export const fetchAllSections = (setClassSection, uid) => {
-    console.log(uid)
+export const fetchAllSections = (setClassSection, uid, setLoading, setError) => {
+    setLoading(true)
     SectiontDataRef
         .doc(uid)
         .get()
         .then((result) => {
-            if (result)
+            if (result.data().category) {
+                setLoading(false)
                 setClassSection(result.data().category)
-            // else alert('You have no')
+            }
+            else if (!result.data().category) {
+                setLoading(false)
+                setClassSection([])
+            }
         })
-        .catch(err =>
-            console.log(err)
-        )
+        .catch(err => {
+            setLoading(false)
+            alert('Network Error!, Please ensure you are connected to internet')
+            setError(err.message)
+        })
 }
 
 export const saveAllClasses = (history, sectionName, classess, uid) => {
@@ -65,35 +72,40 @@ export const saveAllClasses = (history, sectionName, classess, uid) => {
 
 }
 
-
-export const fetchAllClasses = (sectionName, setClasses, uid) => {
-    // const sectionName = sectionName
+export const fetchAllClasses = (sectionName, setClasses, uid, setLoading, setError) => {
+    setLoading(true)
     SectiontDataRef
         .doc(uid)
         .get()
         .then((result) => {
-            if (result) {
-                console.log(result.data())
+            if (result.data()[sectionName]) {
+                setLoading(false)
+                // console.log(result.data()[sectionName])
                 setClasses(result.data()[sectionName])
-                // else alert('You have no')
+            }
+            else if (!result.data()[sectionName]) {
+                setLoading(false)
+                setClasses([])
             }
         })
-        .catch(err =>
-            console.log(err)
-        )
+        .catch(err => {
+            setLoading(false)
+            alert('Network Error!, Please ensure you are connected to internet')
+            setError(err.message)
+        })
 }
-
-
 
 export const saveStudents = (history, ClassName, AllmyStudent, uid) => {
     console.log(ClassName)
-    SectiontDataRef.doc(uid).get().then(result => {
+    SectiontDataRef.doc(uid).get().then(res => {
+        const result = res.data()[ClassName]
+        // console.log(result)
         SectiontDataRef.doc(uid)
             .update(
                 {
                     [ClassName]: {
-                        subjects: result.data()[ClassName].subjects,
-                        students: AllmyStudent
+                        ...result,
+                        students: AllmyStudent,
                     }
                 }
             )
@@ -108,6 +120,8 @@ export const saveStudents = (history, ClassName, AllmyStudent, uid) => {
                 if (err)
                     console.log(err + ' not updated')
             });
+
+
     }).catch(function (err) {
         if (err)
             console.log(err + ' not updated')
@@ -137,12 +151,12 @@ export const getStudentsAndScore = (ClassName, setAllmyStudent, setScore, uid) =
 }
 
 export const dbUpdateSubject = (history, ClassName, AllmySubjects, uid) => {
-    console.log(AllmySubjects)
-    SectiontDataRef.doc(uid).get().then(result => {
+    SectiontDataRef.doc(uid).get().then(res => {
+        const result = res.data()[ClassName]
         SectiontDataRef.doc(uid).update(
             {
                 [ClassName]: {
-                    students: result.data()[ClassName].students,
+                    ...result,
                     subjects: AllmySubjects
                 }
             }
@@ -192,8 +206,7 @@ export const saveScoreSheet = (ClassName, currentSubject, scoreDisplayData, sett
         SectiontDataRef.doc(uid).update(
             {
                 [ClassName]: {
-                    students: result.students,
-                    subjects: result.subjects,
+                    ...result,
                     scores: {
                         ...result.scores,
                         [currentSubject]: scoreDisplayData
@@ -304,6 +317,7 @@ export const getGotoClassData = (ResultGenData, setResultGenData, tempClassValue
 }
 
 export const saveresultData = (Data, uid) => {
+
     SectiontDataRef.doc(uid).get().then(result => {
         SectiontDataRef.doc(uid)
             .update({ resultData: Data })
@@ -345,14 +359,30 @@ export const getResultGeneratorData = (ResultGenData, setResultGenData, tempClas
 
 
 export const getResultData = (setCurrentData, setScore, setStudent, setSubjects, uid) => {
+
+
+    function countProperties(obj) {
+        return Object.keys(obj).length;
+    }
+
     SectiontDataRef.doc(uid).get()
         .then(resp => {
             let result = resp.data()
-            if (result) {
+            const selectedClass = result.resultData.selectedClass.toLocaleLowerCase()
+            const scores = result[selectedClass].scores
+            console.log(scores)
+            console.log('scoreKeys: ' + countProperties(scores))
+            console.log('subjectLength ' + result[selectedClass].subjects.length)
+            if (countProperties(scores) !== result[selectedClass].subjects.length) {
+                alert('Please provide scores for all subjects')
+                window.location = `/${selectedClass}/classroom`
+            }
+
+            else {
                 //is resultData available in db store it in State
                 setCurrentData(result.resultData)
                 //fetch classroom Data from db and save in State
-                const selectedClass = result.resultData.selectedClass.toLocaleLowerCase() // e.g nursery 1 === result.resultData.selectedClass.toLocaleLowerCase()
+                // e.g nursery 1 === result.resultData.selectedClass.toLocaleLowerCase()
                 setScore(result[selectedClass].scores);
                 //      scores: {
                 //     eng: [{ fName, sName, Test1, Test2, Exam }]

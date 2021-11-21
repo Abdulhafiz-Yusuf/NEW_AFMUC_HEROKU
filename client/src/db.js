@@ -8,6 +8,6 @@ const db = new PouchDB('afmuc')
 //db.destroy()
 
 db.allDocs({ include_docs: true, })
-    .then(result => console.log(result))
+// .then(result => console.log(result))
 
 export default db
