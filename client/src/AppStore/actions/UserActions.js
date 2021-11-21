@@ -58,6 +58,7 @@ export const onLogOut = (dispatch, history, setisLoading) => {
 
 export const singUp = (history, dispatch, username, email, password, section, setError, setLoading) => {
     setError('')
+
     Firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((response) => {
             const uid = response.user.uid
@@ -73,11 +74,12 @@ export const singUp = (history, dispatch, username, email, password, section, se
                         type: 'GET_CURRENT_USER',
                         payload: data
                     })
-                    // window.location = '/allclassSection'
-                    history.push({
-                        pathname: '/allclassSection',
-                        state: data
-                    });
+                    setLoading(false)
+                    window.location = '/allclassSection'
+                    // history.push({
+                    //     pathname: '/allclassSection',
+                    //     state: data
+                    // });
                 })
                 .catch((error) => {
                     setError('Registering Failed. Please try again.')

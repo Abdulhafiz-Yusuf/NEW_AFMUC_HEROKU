@@ -4,6 +4,7 @@ import { globalStore } from '../../AppStore/globalStore';
 import { dbServices } from '../../services/services';
 import { singUp } from '../../AppStore/actions/UserActions'
 import { Link, useHistory } from 'react-router-dom'
+import LoadScreen from '../common/LoadScreen';
 
 function SignUp() {
     const { state, dispatch } = useContext(globalStore)
@@ -33,7 +34,7 @@ function SignUp() {
 
     }
 
-    const onSubmit = (e) => {
+    const onSignUp = (e) => {
         e.preventDefault()
         if (profile.username === '' || profile.email === '' || profile.password === '' || profile.confirmPassword === '') {
             alert('username or password cannot be empty')
@@ -48,17 +49,39 @@ function SignUp() {
             //authenticate Admin
             // dbServices.authenticateAdmin(profile)
 
-
+            setLoading(true)
             //Register User
             singUp(history, dispatch, profile.username, profile.email, profile.password, profile.section, setError, setLoading)
         }
     }
+
+
+
+    const renderButton = () => {
+        if (Loading) {
+            return (
+                <LoadScreen size='small' text='Loging in....' height='100px' />
+            )
+        }
+        else {
+            return (
+                <div className='d-flex justify-content-lg-center '>
+                    <Button className='text-light font-weight-bold'
+                        color='success'
+                        onClick={onSignUp}>Register</Button>
+                </div>
+
+            )
+        }
+    }
+
+
     return (
         <div className='d-flex justify-content-center align-items-center flex-column'>
             <div style={{ marginTop: '-100px' }}></div>
-            <Card className='container w-25 shadow-lg pt-3 d-flex flex-column align-items-center'>
-                <h4 className='text-success font-weight-bold'>Register</h4>
-                <Form >
+            <Card className='container w-50 shadow-lg pt-3 d-flex flex-column align-items-center'>
+                <h4 className='text-success font-weight-bold'>Registration</h4>
+                <Form style={{ width: '80vh' }}>
                     <FormGroup >
                         <Label for="username" className='text-success font-weight-bold'>Username</Label>
                         <Input type="text" name="username" value={profile.username} onChange={handleChange} placeholder="username" />
@@ -76,12 +99,8 @@ function SignUp() {
                         <Input type="password" name="confirmPassword" value={profile.confirmPassword} onChange={handleChange} placeholder="xxxxxxx" />
                     </FormGroup>
                 </Form>
-                <div className='d-flex justify-content-lg-center '>
-                    <Button className='text-light font-weight-bold'
-                        color='success'
-                        onClick={onSubmit}>Register</Button>
-                </div>
 
+                {renderButton()}
 
                 <h6 className='mt-3 mb-3'>Already have an account?
                     <Link to='/'>  Login</Link>

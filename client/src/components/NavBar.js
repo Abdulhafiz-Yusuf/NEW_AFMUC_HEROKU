@@ -13,7 +13,7 @@ const NavBar = () => {
 
     useEffect(() => {
         console.log(history)
-        if (window.location.pathname === '/' || window.location.pathname === '/results')
+        if (window.location.pathname === '/' || window.location.pathname === '/results' || window.location.pathname === '/signup')
             setStyles({ display: 'none' })
         else {
             setStyles({ display: 'flex', flexDirection: 'column', justifyContent: 'start' })
