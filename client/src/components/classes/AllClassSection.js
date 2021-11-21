@@ -17,7 +17,6 @@ function AllClassSection({ user }) {
     const [Loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [ClassSection, setClassSection] = useState([])
-
     useEffect(() => {
         //* 1.   useEffect = fetch all class category
         fetchAllSections(setClassSection, uid, setLoading, setError)

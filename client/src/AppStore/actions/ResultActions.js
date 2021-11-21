@@ -33,15 +33,15 @@ export const fetchAllSections = (setClassSection, uid, setLoading, setError) => 
         .doc(uid)
         .get()
         .then((result) => {
-            console.log(result.data())
-            // if (result.data().category) {
-            //     setLoading(false)
-            //     setClassSection(result.data().category)
-            // }
-            // else if (!result.data().category) {
-            //     setLoading(false)
-            //     setClassSection([])
-            // }
+            console.log(result.data().category)
+            if (result.data().category) {
+                setLoading(false)
+                setClassSection(result.data().category)
+            }
+            else if (!result.data().category) {
+                setLoading(false)
+                setClassSection([])
+            }
         })
         .catch(err => {
             setLoading(false)
@@ -94,6 +94,7 @@ export const fetchAllClasses = (sectionName, setClasses, uid, setLoading, setErr
             setError(err.message)
         })
 }
+
 
 export const saveStudents = (history, ClassName, AllmyStudent, uid) => {
     console.log(ClassName)
