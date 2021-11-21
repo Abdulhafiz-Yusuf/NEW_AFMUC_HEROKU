@@ -10,13 +10,14 @@ function AddclassClassesForm(props) {
     const sectionName = props.match.params.sectionname.toLocaleLowerCase()
 
     const uid = props.user.uid
-
+    const [Loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const [Classes, setClasses] = useState([])
     const [myClass, setmyClass] = useState({ class_name: '', teacher_name: '', })
 
     useEffect(() => {
         //fetchAllClassess
-        fetchAllClasses(sectionName, setClasses, uid)
+        fetchAllClasses(sectionName, setClasses, uid, setLoading, setError)
     }, [])
 
     const changeHandler = (e) => {

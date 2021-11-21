@@ -33,19 +33,27 @@ export const fetchAllSections = (setClassSection, uid, setLoading, setError) => 
         .doc(uid)
         .get()
         .then((result) => {
-            console.log(result.data().category)
-            if (result.data().category) {
-                setLoading(false)
-                setClassSection(result.data().category)
-            }
-            else if (!result.data().category) {
+            if (!result.data().category) {
                 setLoading(false)
                 setClassSection([])
             }
+            else if (result.data().category) {
+                console.log(result.data().category)
+                setLoading(false)
+                setClassSection(result.data().category)
+            }
+
         })
         .catch(err => {
-            setLoading(false)
-            setError(err.message)
+            if (err.message == "Cannot read property 'category' of undefined") {
+                setLoading(false)
+                setClassSection([])
+            }
+            else {
+                setLoading(false)
+                setClassSection([])
+                setError(err.message)
+            }
         })
 }
 
@@ -91,7 +99,7 @@ export const fetchAllClasses = (sectionName, setClasses, uid, setLoading, setErr
         .catch(err => {
             setLoading(false)
             alert('Network Error!, Please ensure you are connected to internet')
-            setError(err.message)
+            // setError(err.message)
         })
 }
 
@@ -374,11 +382,11 @@ export const getResultData = (setCurrentData, setScore, setStudent, setSubjects,
             console.log(scores)
             console.log('scoreKeys: ' + countProperties(scores))
             console.log('subjectLength ' + result[selectedClass].subjects.length)
+
             if (countProperties(scores) !== result[selectedClass].subjects.length) {
                 alert('Please provide scores for all subjects')
                 window.location = `/${selectedClass}/classroom`
             }
-
             else {
                 //is resultData available in db store it in State
                 setCurrentData(result.resultData)
