@@ -10,9 +10,9 @@ const SectiontDataRef = db.collection('section');
 
 
 //RESULT ACTIONS
-export const saveAllSection = (history, ClassSection, user) => {
+export const saveAllSection = (history, ClassSection, uid) => {
     console.log(ClassSection)
-    SectiontDataRef.doc(user.uid)
+    SectiontDataRef.doc(uid)
         .set(
             {
                 category: ClassSection,

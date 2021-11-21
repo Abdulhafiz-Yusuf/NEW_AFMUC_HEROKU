@@ -6,8 +6,9 @@ import { dbServices } from '../../services/services';
 import { fetchAllSections, saveAllSection } from '../../AppStore/actions/ResultActions';
 
 
-function AddclassCategoryForm({ user }) {
+function AddclassCategoryForm(props) {
 
+    const uid = props.user.uid
     const history = useHistory();
 
     const [ClassSection, setClassSection] = useState([])
@@ -15,7 +16,7 @@ function AddclassCategoryForm({ user }) {
 
     useEffect(() => {
         //fetchAllSection
-        fetchAllSections(setClassSection, ClassSection, user)
+        fetchAllSections(setClassSection, uid)
     }, [])
 
 
@@ -68,7 +69,7 @@ function AddclassCategoryForm({ user }) {
 
         else {
             //save all sections to DB
-            saveAllSection(history, ClassSection, user)
+            saveAllSection(history, ClassSection, uid)
 
         }
 

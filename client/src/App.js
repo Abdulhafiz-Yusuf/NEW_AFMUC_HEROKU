@@ -106,10 +106,6 @@ export default function App() {
             )}
           />
 
-          <Route path="/addsection" exact>
-            <AddClassSectionForm user={user} />
-          </Route>
-
           <Route
             path="/:sectionname/addclass"
             render={(props) => (
