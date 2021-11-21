@@ -29,8 +29,8 @@ const NavBar = () => {
                         <img style={{ width: '100px', height: '100px' }} src={Logo} alt='Logo' />
                     </NavbarBrand>
                     <div>
-                        <h2 className='text-light text-center' >AFMUC INTERNATIONAL MISSIONARY SCHOOL</h2>
-                        <h4 className='text-light text-center' >STUDENT RESULT MANAGEMENT SYSTEM</h4>
+                        <h1 className='text-light text-center font-weight-bold' >AFMUC INTERNATIONAL MISSIONARY SCHOOL</h1>
+                        <h4 className='text-light text-center font-weight-bold' >STUDENT RESULT MANAGEMENT SYSTEM</h4>
                     </div>
                 </div>
                 <Collapse className='w-50 light justify-content-center' isOpen={isOpen} navbar>
