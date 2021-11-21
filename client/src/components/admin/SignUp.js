@@ -79,9 +79,9 @@ function SignUp() {
     return (
         <div className='d-flex justify-content-center align-items-center flex-column'>
             <div style={{ marginTop: '-100px' }}></div>
-            <Card className='container w-50 shadow-lg pt-3 d-flex flex-column align-items-center'>
+            <Card className='container w-25 shadow-lg pt-3 d-flex flex-column align-items-center'>
                 <h4 className='text-success font-weight-bold'>Registration</h4>
-                <Form style={{ width: '80vh' }}>
+                <Form >
                     <FormGroup >
                         <Label for="username" className='text-success font-weight-bold'>Username</Label>
                         <Input type="text" name="username" value={profile.username} onChange={handleChange} placeholder="username" />

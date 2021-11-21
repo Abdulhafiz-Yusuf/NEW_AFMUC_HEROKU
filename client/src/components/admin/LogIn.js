@@ -75,9 +75,9 @@ export default function Login() {
         <div className='d-flex justify-content-center align-items-center flex-column'>
             {/* <div style={{ height: '0px' }}></div> */}
 
-            <Card className='container w-50 shadow-lg pt-3 pb-4 d-flex flex-column align-items-center'>
+            <Card className='container w-25 shadow-lg pt-3 pb-4 d-flex flex-column align-items-center'>
                 <h4 className='text-success font-weight-bold'>Login</h4>
-                <Form style={{ width: '80vh' }}>
+                <Form >
                     <FormGroup >
                         <Label for="username" className='text-success font-weight-bold'>Email</Label>
                         <Input type="email" name="email" value={profile.email} onChange={handleChange} placeholder="email" />
