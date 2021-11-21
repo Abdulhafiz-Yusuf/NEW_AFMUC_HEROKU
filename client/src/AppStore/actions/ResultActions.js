@@ -1,12 +1,7 @@
-import
-// firebase,
-{ db }
-    from '../../services/firebase/FirebaseConfig'
+import { db } from '../../services/firebase/FirebaseConfig'
 
 //Firestore Refs
 const SectiontDataRef = db.collection('section');
-
-
 
 
 //RESULT ACTIONS
