@@ -33,18 +33,18 @@ export const fetchAllSections = (setClassSection, uid, setLoading, setError) => 
         .doc(uid)
         .get()
         .then((result) => {
-            if (result.data().category) {
-                setLoading(false)
-                setClassSection(result.data().category)
-            }
-            else if (!result.data().category) {
-                setLoading(false)
-                setClassSection([])
-            }
+            console.log(result.data())
+            // if (result.data().category) {
+            //     setLoading(false)
+            //     setClassSection(result.data().category)
+            // }
+            // else if (!result.data().category) {
+            //     setLoading(false)
+            //     setClassSection([])
+            // }
         })
         .catch(err => {
             setLoading(false)
-            alert('Network Error!, Please ensure you are connected to internet')
             setError(err.message)
         })
 }
