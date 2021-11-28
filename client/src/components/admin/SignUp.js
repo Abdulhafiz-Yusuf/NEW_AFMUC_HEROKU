@@ -53,7 +53,7 @@ function SignUp() {
     const renderButton = () => {
         if (Loading) {
             return (
-                <LoadScreen size='small' text='Loging in....' height='100px' />
+                <LoadScreen size='small' text='Please Wait....' height='100px' />
             )
         }
         else {

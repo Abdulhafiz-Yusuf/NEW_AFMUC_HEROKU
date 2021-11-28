@@ -64,7 +64,7 @@ export default function Login() {
                 <div className='d-flex justify-content-lg-center '>
                     <Button className='text-light font-weight-bold'
                         color='success'
-                        onClick={onLogIn}>Submit</Button>
+                        onClick={onLogIn}>Log In</Button>
                 </div>
 
             )
