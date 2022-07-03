@@ -45,15 +45,15 @@ export const fetchAllSections = (setClassSection, uid, setLoading, setError) => 
 
         })
         .catch(err => {
-            if (err.message == "Cannot read property 'category' of undefined") {
-                setLoading(false)
-                setClassSection([])
-            }
-            else {
-                setLoading(false)
-                setClassSection([])
-                setError(err.message)
-            }
+            // if (err.message == "Cannot read properties of undefined (reading 'category')") {
+            setLoading(false)
+            setClassSection([])
+            // }
+            // else {
+            //     setLoading(false)
+            //     setClassSection([])
+            //     setError(err.message)
+            // }
         })
 }
 
